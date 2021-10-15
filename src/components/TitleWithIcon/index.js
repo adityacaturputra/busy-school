@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import theme from '../../config/theme';
-import Gap from '../../style/Gap';
+import { Gap } from '../../style';
 
 export default function TitleWithIcon({ title, Icon }) {
   return (

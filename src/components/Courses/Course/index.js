@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { IconCourse, IconDestination } from '../../../assets';
-import Gap from '../../../style/Gap';
+import { Gap } from '../../../style';
 import theme from '../../../config/theme';
 import IconTeacher from '../../../assets/svg/IconTeacher';
 
 const Course = (props) => {
   const {
-    title, place, teacher, time, disabled,
+    title, place, teacher, time, disabled, last,
   } = props;
   return (
-    <Container>
+    <Container last={last}>
       <TitleContainer>
         <IconCourse disabled={disabled} />
         <Gap width="6px" />
@@ -36,15 +36,17 @@ Course.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   time: PropTypes.any.isRequired,
   disabled: PropTypes.bool,
+  last: PropTypes.bool,
 };
 
 Course.defaultProps = {
   disabled: false,
+  last: false,
 };
 
 const Container = styled.div`
     padding: 12px 24px 12px 24px;
-    border-bottom: 1px solid ${theme.color.black_10};
+    border-bottom: 1px solid ${({ last }) => (last ? theme.color.black_50 : theme.color.black_10)};
   `;
 
 const DescriptionContainer = styled.div`

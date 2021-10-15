@@ -1,0 +1,19 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import theme from '../../config/theme';
+
+export default function IconDestination({ disabled }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.99333 1.33333C4.31333 1.33333 1.33333 4.31999 1.33333 7.99999C1.33333 11.68 4.31333 14.6667 7.99333 14.6667C11.68 14.6667 14.6667 11.68 14.6667 7.99999C14.6667 4.31999 11.68 1.33333 7.99333 1.33333ZM10.6667 10.6667C10.605 10.7285 10.5317 10.7775 10.4511 10.8109C10.3704 10.8444 10.284 10.8616 10.1967 10.8616C10.1093 10.8616 10.0229 10.8444 9.94224 10.8109C9.8616 10.7775 9.78834 10.7285 9.72666 10.6667L7.53333 8.47333C7.47034 8.41158 7.42022 8.33795 7.38589 8.2567C7.35156 8.17545 7.33369 8.0882 7.33333 7.99999V5.33333C7.33333 4.96666 7.63333 4.66666 7.99999 4.66666C8.36666 4.66666 8.66666 4.96666 8.66666 5.33333V7.72666L10.6667 9.72666C10.9267 9.98666 10.9267 10.4067 10.6667 10.6667Z" fill={disabled ? theme.color.black_30 : '#BCBCBC'} />
+    </svg>
+  );
+}
+
+IconDestination.propTypes = {
+  disabled: PropTypes.bool,
+};
+
+IconDestination.defaultProps = {
+  disabled: false,
+};

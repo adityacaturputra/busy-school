@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { Wrapper } from '../../style';
 import Nav from '../../components/Nav';
 import { IconHome } from '../../assets';
 import Header from '../../components/Header';
@@ -22,15 +21,4 @@ function Home(props) {
   );
 }
 
-Home.propTypes = {
-
-};
-
 export default Home;
-
-const Wrapper = styled.div`
-  @media (min-width: 1024px){
-    margin-left: 122px;
-  }  
-  margin-bottom: 100px;
-`;
