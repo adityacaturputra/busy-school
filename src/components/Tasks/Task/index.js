@@ -16,6 +16,7 @@ export default function Task({ title }) {
         <p>{title}</p>
       </Container>
       <TaskDetail show={taskDetailShow} onClick={() => setTaskDetailShow(!taskDetailShow)} />
+
     </>
   );
 }

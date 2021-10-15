@@ -1,26 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Transition } from 'react-transition-group';
 import styled from 'styled-components';
 import theme from '../../../../config/theme';
 import { IconListTaskClock, IconListTaskDeadline, IconListTaskDescription } from '../../../../assets';
 
 function TaskDetail(props) {
-  const { show, onClick } = props;
+  const { onClick, show } = props;
   return (
-    <Container show={show} onClick={onClick}>
-      <Content>
-        <IconListTaskDescription />
-        <Description>Menjelaskan istilah istilah pada bahasa pemrograman cobol</Description>
-      </Content>
-      <Content>
-        <IconListTaskDeadline />
-        <Text>Senin, 11 Oktober 2021 | 12.00</Text>
-      </Content>
-      <Content>
-        <IconListTaskClock />
-        <Text>1 Hari 3 Jam</Text>
-      </Content>
-    </Container>
+    <>
+      <Transition in={show} timeout={200}>
+        {(state) => (
+          <Container onClick={onClick} show={state}>
+            <Content>
+              <IconListTaskDescription />
+              <Description>Menjelaskan istilah istilah pada bahasa pemrograman cobol</Description>
+            </Content>
+            <Content>
+              <IconListTaskDeadline />
+              <Text>Senin, 11 Oktober 2021 | 12.00</Text>
+            </Content>
+            <Content>
+              <IconListTaskClock />
+              <Text>1 Hari 3 Jam</Text>
+            </Content>
+          </Container>
+        )}
+      </Transition>
+    </>
   );
 }
 
@@ -36,10 +43,12 @@ TaskDetail.defaultProps = {
 export default TaskDetail;
 
 const Container = styled.div`
-    display: ${({ show }) => (show ? 'flex' : 'none')};
+    display: ${({ show }) => (show === 'entered' || show === 'entering' ? 'flex' : 'none')};
+    opacity: ${({ show }) => (show === 'entering' ? '.3' : '1')};
     flex-direction: column;
     padding: 4px 28px 8px;
     border-bottom: 1px solid ${theme.color.black_10};
+    transition: 0.5s;
 `;
 
 const Content = styled.div`
