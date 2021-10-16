@@ -6,7 +6,7 @@ import Task from './Task';
 export default function Tasks() {
   return (
     <>
-      <TitleWithIcon title="Pengingat Tugas" Icon={<IconCurrentTasksTitle size={24} />} />
+      <TitleWithIcon title="Pengingat Tugas" Icon={<IconCurrentTasksTitle size="24px" />} />
       <Task title="Sistem Informasi Manajemen" />
       <Task title="Pemrograman Olah Berkas" />
       <Task title="Implementasi Sistem Informasi" />

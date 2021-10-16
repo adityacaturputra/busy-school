@@ -40,10 +40,18 @@ const TextDescription = styled(Text)`
 `;
 
 const Container = styled.div`
+@media (min-width: 1024px) {
+  padding: 12px 144px;
+}
   box-sizing: border-box;
   display: flex;
   align-items: center;
   padding: 12px 24px;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100vw;
+  background-color: #fff;
   border-bottom: 1px solid ${theme.color.black_50};
   path {
     fill: ${theme.color.black_70};

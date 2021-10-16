@@ -25,6 +25,7 @@ const Container = styled.div`
     padding: 12px 28px;
     display: flex;
     align-items: center;
+    cursor: pointer;
     p {
       font-size: 14px;
       margin-left: 8px;

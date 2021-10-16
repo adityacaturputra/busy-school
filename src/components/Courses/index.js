@@ -1,17 +1,33 @@
-import React from 'react';
+/* eslint-disable max-len */
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/forbid-prop-types */
+import React, { useState } from 'react';
+import PropTypes, { any } from 'prop-types';
 import { IconCurrentScheduleTitle } from '../../assets';
 import { Gap } from '../../style';
 import TitleWithIcon from '../TitleWithIcon';
 import Course from './Course';
 
-export default function Courses() {
+export default function Courses({ day, data }) {
   return (
     <>
-      <TitleWithIcon title="Mata Kuliah Hari Ini" Icon={<IconCurrentScheduleTitle size={24} />} />
-      <Course title="Implementasi Sistem Informasi" place="D003" teacher="Ronggo Permono" time="00:39:01" />
-      <Course title="Struktur & Organisasi Data 1" place="D003" teacher="Meilani B Siregar" time="00:39:01" disabled />
-      <Course title="Teknik Pemrog. Terstruktur 1" place="D003" teacher="Meilani B Siregar" time="00:39:01" disabled last />
+      <TitleWithIcon title={day} Icon={<IconCurrentScheduleTitle size="24px" />} />
+      {
+         data.map((courseData, arr, index) => (
+           <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={courseData.time} key={index} />
+         ))
+      }
       <Gap height="36px" />
     </>
   );
 }
+
+Courses.propTypes = {
+  day: PropTypes.string,
+  data: PropTypes.array,
+};
+
+Courses.defaultProps = {
+  day: 'Mata Kuliah Hari Ini',
+  data: [],
+};

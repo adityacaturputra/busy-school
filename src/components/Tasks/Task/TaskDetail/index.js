@@ -48,6 +48,7 @@ const Container = styled.div`
     flex-direction: column;
     padding: 4px 28px 8px;
     border-bottom: 1px solid ${theme.color.black_10};
+    cursor: default;
     transition: 0.5s;
 `;
 

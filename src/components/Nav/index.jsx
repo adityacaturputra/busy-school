@@ -43,7 +43,7 @@ const Container = styled.div`
     height: 100vh;
     border-right: 2px solid ${theme.color.black_30};
     justify-content: space-around;
-    position: sticky;
+    position: fixed;
     top: 0;
     float: left;
   }

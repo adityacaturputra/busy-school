@@ -10,12 +10,12 @@ import Tasks from '../../components/Tasks';
 function Home(props) {
   return (
     <>
+      <Header Icon={<IconHome size="24px" />} title="Selamat Datang" description="30120044" />
       <Wrapper>
-        <Header Icon={<IconHome size={24} />} title="Selamat Datang" description="30120044" />
         <Courses />
         <Tasks />
       </Wrapper>
-      <Nav />
+      <Nav active="/" />
     </>
 
   );
