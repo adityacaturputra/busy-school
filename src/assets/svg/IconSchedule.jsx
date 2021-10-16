@@ -15,5 +15,5 @@ IconSchedule.propTypes = {
 };
 
 IconSchedule.defaultProps = {
-  size: 48,
+  size: '48px',
 };

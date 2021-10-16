@@ -12,9 +12,9 @@ function IconHome({ size }) {
 export default IconHome;
 
 IconHome.propTypes = {
-  size: PropTypes.number,
+  size: PropTypes.string,
 };
 
 IconHome.defaultProps = {
-  size: 48,
+  size: '48px',
 };
