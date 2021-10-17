@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Form from '../../../style/Form';
 
 const FormContainer = styled(Form)`
+  height: 500px;
   padding: 36px;
   background-color: #fff;
   z-index: 10;

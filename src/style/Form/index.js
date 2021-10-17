@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import theme from '../../config/theme';
 
 const Form = styled.div`
+  height: 100%;
+  overflow-y: auto;
   label {
     font-size: 18px;
     font-weight: 500;
