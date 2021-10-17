@@ -22,5 +22,8 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'no-multiple-empty-lines': 'warn',
     'react/self-closing-comp': 'warn',
+    'no-console': 'warn',
+    'no-empty': 'warn',
+    'no-irregular-whitespace': 'warn',
   },
 };
