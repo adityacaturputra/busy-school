@@ -15,7 +15,7 @@ function Home(props) {
         <Courses />
         <Tasks />
       </Wrapper>
-      <Nav active="/" />
+      <Nav active="home" />
     </>
 
   );

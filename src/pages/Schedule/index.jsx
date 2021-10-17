@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import Nav from '../../components/Nav';
 import { Wrapper } from '../../style';
@@ -10,33 +9,8 @@ import { IconSchedule } from '../../assets';
 import Add from '../../components/Add';
 import Layer from '../../style/Layer';
 import AddCourse from './AddCourse';
-
-const hardCoursesData = [
-  {
-    name: 'Implementasi Sistem Informasi',
-    place: 'D001',
-    teacher: 'Ronggo Permono',
-    time: '07:00',
-  },
-  {
-    name: 'Implementasi Sistem Informasi',
-    place: 'D001',
-    teacher: 'Ronggo Permono',
-    time: '07:00',
-  },
-  {
-    name: 'Implementasi Sistem Informasi',
-    place: 'D001',
-    teacher: 'Ronggo Permono',
-    time: '07:00',
-  },
-  {
-    name: 'Implementasi Sistem Informasi',
-    place: 'D001',
-    teacher: 'Ronggo Permono',
-    time: '07:00',
-  },
-];
+import { getCourses } from '../../lib/api';
+import { getDay } from '../../utils';
 
 const getDate = () => {
   const dateObj = new Date();
@@ -47,19 +21,28 @@ const getDate = () => {
   return `${day}/${month}/${year}`;
 };
 
-function Schedule(props) {
-  const [coursesData, setCoursesData] = useState(hardCoursesData);
+function Schedule() {
+  const [coursesData, setCoursesData] = useState([]);
   const [addClick, setAddClick] = useState(false);
+
+  console.log(getDay());
+
+  useEffect(() => {
+    getCourses().then((res) => setCoursesData(res.mataKuliah));
+  }, []);
+
+  const matkulDayFilter = (day) => coursesData.filter((course) => course.day === day);
+
   return (
     <>
       <Header Icon={<IconSchedule size="24px" />} title="Minggu ke-3" description={getDate()} />
       <Wrapper>
-        <Courses data={coursesData} />
-        <Courses day="Senin" data={coursesData} />
-        <Courses day="Selasa" data={coursesData} />
-        <Courses day="Rabu" data={coursesData} />
-        <Courses day="Kamis" data={coursesData} />
-        <Courses day="Jumat" data={coursesData} />
+        <Courses data={matkulDayFilter(getDay())} />
+        <Courses day="Senin" data={matkulDayFilter('senin')} />
+        <Courses day="Selasa" data={matkulDayFilter('selasa')} />
+        <Courses day="Rabu" data={matkulDayFilter('rabu')} />
+        <Courses day="Kamis" data={matkulDayFilter('kamis')} />
+        <Courses day="Jumat" data={matkulDayFilter('jumat')} />
 
       </Wrapper>
       <Nav active="schedule" />
@@ -92,9 +75,5 @@ function Schedule(props) {
     </>
   );
 }
-
-Schedule.propTypes = {
-
-};
 
 export default Schedule;

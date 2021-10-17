@@ -11,6 +11,7 @@ import {
 import theme from '../../config/theme';
 
 export default function Nav(props) {
+  const { active } = props;
   const [scroll, setScroll] = useState({
     scrolling: true,
     scrollTop: 0,
@@ -23,7 +24,6 @@ export default function Nav(props) {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, [scroll.scrollTop]);
-  const { active } = props;
   return (
     <CSSTransition
       in={scroll.scrolling}
@@ -34,7 +34,7 @@ export default function Nav(props) {
       {
           () => (
             <Container>
-              <NavItem to="/" active={active === '/'}>
+              <NavItem to="/" active={active === 'home'}>
                 <IconHome />
               </NavItem>
               <NavItem to="/schedule" active={active === 'schedule'}>
@@ -55,11 +55,11 @@ export default function Nav(props) {
 }
 
 Nav.propTypes = {
-  active: PropTypes.oneOf(['/', 'schedule', 'task', 'profile']),
+  active: PropTypes.oneOf(['home', 'schedule', 'task', 'profile']),
 };
 
 Nav.defaultProps = {
-  active: '/',
+  active: 'home',
 };
 
 const Container = styled.div`

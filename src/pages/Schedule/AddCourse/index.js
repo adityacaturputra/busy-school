@@ -7,10 +7,10 @@ export default function AddCourse() {
     matkulName: '',
     teacher: '',
     place: '',
-    time: '',
+    'start-time': '',
+    'end-time': '',
     day: 'senin',
   });
-  console.log(addCourseForm);
 
   const handleForm = (type) => (e) => {
     if (type === 'submit') {
@@ -29,8 +29,10 @@ export default function AddCourse() {
         <input type="text" placeholder="e.g. Aditya Catur S.Kom" id="teacher" name="teacher" />
         <label htmlFor="place">Kode Tempat</label>
         <input type="text" placeholder="e.g. D003" id="place" name="place" />
-        <label htmlFor="place">Waktu</label>
-        <input type="time" id="place" name="time" />
+        <label htmlFor="start-time">Waktu Mulai</label>
+        <input type="time" id="start-time" name="start-time" />
+        <label htmlFor="end-time">Waktu Selesai</label>
+        <input type="time" id="end-time" name="end-time" />
         <label htmlFor="hari">Hari</label>
         <div>
           <input type="radio" name="day" id="senin" value="senin" />

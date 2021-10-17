@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/forbid-prop-types */
-import React, { useState } from 'react';
-import PropTypes, { any } from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { IconCurrentScheduleTitle } from '../../assets';
 import { Gap } from '../../style';
 import TitleWithIcon from '../TitleWithIcon';
@@ -13,8 +13,8 @@ export default function Courses({ day, data }) {
     <>
       <TitleWithIcon title={day} Icon={<IconCurrentScheduleTitle size="24px" />} />
       {
-         data.map((courseData, arr, index) => (
-           <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={courseData.time} key={index} />
+         data.map((courseData) => (
+           <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={courseData['start-time']} key={courseData.id} />
          ))
       }
       <Gap height="36px" />
