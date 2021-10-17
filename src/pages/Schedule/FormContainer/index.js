@@ -4,6 +4,7 @@ import Form from '../../../style/Form';
 const FormContainer = styled(Form)`
   padding: 36px;
   background-color: #fff;
+  z-index: 10;
   position: fixed;
   top: 50%;
   left: 50%;

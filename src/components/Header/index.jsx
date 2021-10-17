@@ -49,7 +49,6 @@ const Container = styled.div`
   padding: 12px 24px;
   position: fixed;
   top: 0;
-  z-index: 10;
   width: 100vw;
   background-color: #fff;
   border-bottom: 1px solid ${theme.color.black_50};

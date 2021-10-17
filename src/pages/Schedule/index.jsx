@@ -61,34 +61,33 @@ function Schedule(props) {
         <Courses day="Kamis" data={coursesData} />
         <Courses day="Jumat" data={coursesData} />
 
-        <CSSTransition
-          in={addClick}
-          classNames="animate"
-          timeout={300}
-          unmountOnExit
-        >
-          {
+      </Wrapper>
+      <Nav active="schedule" />
+      <Add clicked={addClick} onClick={() => setAddClick(!addClick)} />
+      <CSSTransition
+        in={addClick}
+        classNames="animate"
+        timeout={300}
+        unmountOnExit
+      >
+        {
           () => (
             <Layer onClick={() => setAddClick(!addClick)} />
           )
           }
-        </CSSTransition>
-        <CSSTransition
-          in={addClick}
-          classNames="appear"
-          timeout={500}
-          unmountOnExit
-        >
-          {
+      </CSSTransition>
+      <CSSTransition
+        in={addClick}
+        classNames="appear"
+        timeout={500}
+        unmountOnExit
+      >
+        {
           () => (
             <AddCourse />
           )
           }
-        </CSSTransition>
-
-      </Wrapper>
-      <Nav active="schedule" />
-      <Add clicked={addClick} onClick={() => setAddClick(!addClick)} />
+      </CSSTransition>
 
     </>
   );

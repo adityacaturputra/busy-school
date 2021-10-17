@@ -33,6 +33,7 @@ const Container = styled.div`
     position: fixed;
     bottom: 121px;
     right: 36px;
+    z-index: 11;
     border-radius: 50%;
     transform: rotate(${({ clicked }) => (clicked === 'entered' || clicked === 'entering' ? '315deg' : '0deg')});
     transition: 1s;

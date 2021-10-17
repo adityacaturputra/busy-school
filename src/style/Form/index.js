@@ -33,7 +33,7 @@ const Form = styled.div`
     display: inline-block;
     background-color: #fff;
     font-weight: 400;
-    padding: 4px;
+    padding: 6px 12px;
     margin: 2px;
     font-size: 16px; 
     color: ${theme.color.black_70};
@@ -60,7 +60,7 @@ const Form = styled.div`
       font-weight: 500;
       color: ${theme.color.black_100};
       margin-top: 36px;
-      padding: 12px;
+      padding: 12px 24px;
     background-color: ${theme.color.black_10};
     outline: none;
     border: 2px solid ${theme.color.black_50};

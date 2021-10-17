@@ -61,7 +61,10 @@ const TitleContainer = styled.div`
   `;
 
 const Title = styled.p`
+    @media (min-width: 1024px){
     font-size: 18px;
+    }
+    font-size: 16px;
     color: ${(props) => (props.disabled ? theme.color.black_30 : theme.color.black_100)};
   `;
 
