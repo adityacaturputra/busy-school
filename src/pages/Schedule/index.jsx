@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
+
 import { CSSTransition } from 'react-transition-group';
+import { useDispatch, useSelector } from 'react-redux';
 import Nav from '../../components/Nav';
 import { Wrapper } from '../../style';
 import Courses from '../../components/Courses';
@@ -9,8 +11,8 @@ import { IconSchedule } from '../../assets';
 import Add from '../../components/Add';
 import Layer from '../../style/Layer';
 import AddCourse from './AddCourse';
-import { getCourses } from '../../lib/api';
 import { getDay } from '../../utils';
+import { getCourses } from '../../store/actions';
 
 const getDate = () => {
   const dateObj = new Date();
@@ -22,14 +24,8 @@ const getDate = () => {
 };
 
 function Schedule() {
-  const [coursesData, setCoursesData] = useState([]);
+  const { mataKuliah: coursesData } = useSelector((state) => state.courses);
   const [addClick, setAddClick] = useState(false);
-
-  console.log(getDay());
-
-  useEffect(() => {
-    getCourses().then((res) => setCoursesData(res.mataKuliah));
-  }, []);
 
   const matkulDayFilter = (day) => coursesData.filter((course) => course.day === day);
 
@@ -37,12 +33,20 @@ function Schedule() {
     <>
       <Header Icon={<IconSchedule size="24px" />} title="Minggu ke-3" description={getDate()} />
       <Wrapper>
-        <Courses data={matkulDayFilter(getDay())} />
-        <Courses day="Senin" data={matkulDayFilter('senin')} />
-        <Courses day="Selasa" data={matkulDayFilter('selasa')} />
-        <Courses day="Rabu" data={matkulDayFilter('rabu')} />
-        <Courses day="Kamis" data={matkulDayFilter('kamis')} />
-        <Courses day="Jumat" data={matkulDayFilter('jumat')} />
+        {
+          coursesData
+            ? (
+              <>
+                <Courses data={matkulDayFilter(getDay())} />
+                <Courses day="Senin" data={matkulDayFilter('senin')} />
+                <Courses day="Selasa" data={matkulDayFilter('selasa')} />
+                <Courses day="Rabu" data={matkulDayFilter('rabu')} />
+                <Courses day="Kamis" data={matkulDayFilter('kamis')} />
+                <Courses day="Jumat" data={matkulDayFilter('jumat')} />
+              </>
+            )
+            : <p>loading...</p>
+        }
 
       </Wrapper>
       <Nav active="schedule" />
