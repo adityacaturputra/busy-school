@@ -25,6 +25,9 @@ const Container = styled.div`
     padding: 12px 28px;
     display: flex;
     align-items: center;
+    :active{
+    background-color: ${theme.color.black_10};
+    }
     cursor: pointer;
     p {
       font-size: 14px;

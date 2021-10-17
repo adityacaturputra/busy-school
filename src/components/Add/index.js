@@ -8,7 +8,7 @@ function Add({ clicked, onClick }) {
   return (
     <Transition in={clicked} timeout={200}>
       {(state) => (
-        <Container clicked={state} onClick={onClick}>
+        <Container state={state} onClick={onClick}>
           <img src={AddIcon} alt="add" />
         </Container>
       )}
@@ -35,7 +35,7 @@ const Container = styled.div`
     right: 36px;
     z-index: 11;
     border-radius: 50%;
-    transform: rotate(${({ clicked }) => (clicked === 'entered' || clicked === 'entering' ? '315deg' : '0deg')});
+    transform: rotate(${({ state }) => (state === 'entered' || state === 'entering' ? '315deg' : '0deg')});
     transition: 1s;
     cursor: pointer;
 `;
