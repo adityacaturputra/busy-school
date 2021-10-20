@@ -12,8 +12,20 @@ export const fetchCourses = async () => {
     const { data: mataKuliah, error } = await supabase
       .from('mata_kuliah')
       .select('*');
-    console.log(mataKuliah);
     return { mataKuliah, error };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const sendCourse = async (courseForm) => {
+  try {
+    const { data, error } = await supabase
+      .from('mata_kuliah')
+      .insert([
+        courseForm,
+      ]);
+    return { addedCourse: data[0], error };
   } catch (error) {
     console.log(error);
   }

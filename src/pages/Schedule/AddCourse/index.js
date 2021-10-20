@@ -1,20 +1,26 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addCourse } from '../../../store/actions';
 import FormContainer from '../FormContainer';
 
-export default function AddCourse() {
+export default function AddCourse({ closeForm }) {
   const [addCourseForm, setAddCourseForm] = useState({
-    matkulName: '',
+    name: '',
     teacher: '',
     place: '',
     'start-time': '',
     'end-time': '',
     day: 'senin',
   });
+  const dispatch = useDispatch();
 
-  const handleForm = (type) => (e) => {
+  const handleForm = (type) => async (e) => {
     if (type === 'submit') {
       e.preventDefault();
+      dispatch(addCourse(addCourseForm));
+      closeForm();
       return;
     }
     setAddCourseForm({ ...addCourseForm, [e.target.name]: e.target.value });
@@ -24,7 +30,7 @@ export default function AddCourse() {
     <FormContainer>
       <form onChange={handleForm()} onSubmit={handleForm('submit')}>
         <label htmlFor="mata-kuliah">Nama Mata Kuliah</label>
-        <input type="text" placeholder="e.g. Matematika Informatika" id="mata-kuliah" name="matkulName" />
+        <input type="text" placeholder="e.g. Matematika Informatika" id="mata-kuliah" name="name" />
         <label htmlFor="teacher">Dosen Pengampu</label>
         <input type="text" placeholder="e.g. Aditya Catur S.Kom" id="teacher" name="teacher" />
         <label htmlFor="place">Kode Tempat</label>
@@ -51,3 +57,7 @@ export default function AddCourse() {
     </FormContainer>
   );
 }
+
+AddCourse.propTypes = {
+  closeForm: PropTypes.func.isRequired,
+};
