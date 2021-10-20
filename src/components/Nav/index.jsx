@@ -145,4 +145,7 @@ const NavItem = styled(Link)`
   :hover{
     border-bottom: 2px solid ${theme.color.black_30};
   }
+  :active{
+    opacity: 0.7;
+  }
 `;
