@@ -1,8 +1,10 @@
+/* eslint-disable no-shadow */
+/* eslint-disable radix */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { CSSTransition } from 'react-transition-group';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Nav from '../../components/Nav';
 import { Wrapper } from '../../style';
 import Courses from '../../components/Courses';
@@ -12,7 +14,6 @@ import Add from '../../components/Add';
 import Layer from '../../style/Layer';
 import AddCourse from './AddCourse';
 import { getDay } from '../../utils';
-import { getCourses } from '../../store/actions';
 
 const getDate = () => {
   const dateObj = new Date();
@@ -26,6 +27,8 @@ const getDate = () => {
 function Schedule() {
   const { mataKuliah: coursesData } = useSelector((state) => state.courses);
   const [addClick, setAddClick] = useState(false);
+
+  const closeForm = () => setAddClick(false);
 
   const matkulDayFilter = (day) => coursesData.filter((course) => course.day === day);
 
@@ -71,7 +74,7 @@ function Schedule() {
       >
         {
           () => (
-            <AddCourse />
+            <AddCourse closeForm={closeForm} />
           )
           }
       </CSSTransition>
