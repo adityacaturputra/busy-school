@@ -140,7 +140,7 @@ const NavItem = styled(Link)`
   border-bottom: 2px solid ${(props) => (props.active ? theme.color.black_50 : '#fff')};
   transition: .3s;
   path {
-    fill: ${((props) => (props.active ? theme.color.black_100 : theme.color.black_30))};
+    fill: ${((props) => (props.active ? theme.color.black_100 : theme.color.black_50))};
   }
   :hover{
     border-bottom: 2px solid ${theme.color.black_30};
