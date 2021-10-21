@@ -146,6 +146,6 @@ const NavItem = styled(Link)`
     border-bottom: 2px solid ${theme.color.black_30};
   }
   :active{
-    opacity: 0.7;
+    opacity: .2;
   }
 `;
