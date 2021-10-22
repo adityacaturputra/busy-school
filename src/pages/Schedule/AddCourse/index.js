@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addCourse } from '../../../store/actions';
-import FormContainer from '../FormContainer';
+import { FormContainer } from '../../../style';
 
 export default function AddCourse({ closeForm }) {
   const [addCourseForm, setAddCourseForm] = useState({

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Form from '../../../style/Form';
+import Form from '../Form';
 
 const FormContainer = styled(Form)`
   height: 500px;

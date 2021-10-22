@@ -13,6 +13,7 @@ import { IconSchedule } from '../../assets';
 import Add from '../../components/Add';
 import Layer from '../../style/Layer';
 import AddCourse from './AddCourse';
+import Modal from '../../components/Modal';
 import { getDay } from '../../utils';
 
 const getDate = () => {
@@ -53,32 +54,9 @@ function Schedule() {
 
       </Wrapper>
       <Nav active="schedule" />
-      <Add clicked={addClick} onClick={() => setAddClick(!addClick)} />
-      <CSSTransition
-        in={addClick}
-        classNames="animate"
-        timeout={300}
-        unmountOnExit
-      >
-        {
-          () => (
-            <Layer onClick={() => setAddClick(!addClick)} />
-          )
-          }
-      </CSSTransition>
-      <CSSTransition
-        in={addClick}
-        classNames="appear"
-        timeout={500}
-        unmountOnExit
-      >
-        {
-          () => (
-            <AddCourse closeForm={closeForm} />
-          )
-          }
-      </CSSTransition>
-
+      <Modal show={addClick} onClick={() => setAddClick(!addClick)}>
+        <AddCourse closeForm={closeForm} />
+      </Modal>
     </>
   );
 }
