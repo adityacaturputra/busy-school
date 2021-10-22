@@ -1,17 +1,47 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import IconCurrentTasksTitle from '../../assets/svg/IconCurrentTasksTitle';
 import TitleWithIcon from '../TitleWithIcon';
 import Task from './Task';
 
-export default function Tasks() {
+const taskList = [
+  {
+    title: 'Pemrograman Olah Berkas',
+    description: 'Istilah - istilah dalam pemrograman cobol',
+    deadline: '2 Mei 2021',
+  },
+  {
+    title: 'Pemrograman Olah Berkas',
+    description: 'Istilah - istilah dalam pemrograman cobol',
+    deadline: '2 Mei 2021',
+  },
+  {
+    title: 'Pemrograman Olah Berkas',
+    description: 'Istilah - istilah dalam pemrograman cobol',
+    deadline: '2 Mei 2021',
+  },
+  {
+    title: 'Pemrograman Olah Berkas',
+    description: 'Istilah - istilah dalam pemrograman cobol',
+    deadline: '2 Mei 2021',
+  },
+];
+export default function Tasks(props) {
   return (
     <>
       <TitleWithIcon title="Pengingat Tugas" Icon={<IconCurrentTasksTitle size="24px" />} />
-      <Task title="Sistem Informasi Manajemen" />
-      <Task title="Pemrograman Olah Berkas" />
-      <Task title="Implementasi Sistem Informasi" />
-      <Task title="Teknik Pemrograman Terstruktur 1" />
-      <Task title="Struktur dan Organisasi Data 1" />
+      {
+        taskList.map((task) => (
+          <Task title={task.title} description={task.description} deadline={task.deadline} />
+        ))
+      }
     </>
   );
 }
+
+Tasks.propTypes = {
+};
+
+Tasks.defaultProps = {
+};

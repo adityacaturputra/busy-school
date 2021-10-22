@@ -6,19 +6,21 @@ import theme from '../../../../config/theme';
 import { IconListTaskClock, IconListTaskDeadline, IconListTaskDescription } from '../../../../assets';
 
 function TaskDetail(props) {
-  const { onClick, show } = props;
+  const {
+    onClick, show, disabled, description, deadline,
+  } = props;
   return (
     <>
       <Transition in={show} timeout={200}>
         {(state) => (
-          <Container onClick={onClick} show={state}>
+          <Container onClick={onClick} show={state} disabled={disabled}>
             <Content>
               <IconListTaskDescription />
-              <Description>Menjelaskan istilah istilah pada bahasa pemrograman cobol</Description>
+              <Description>{description}</Description>
             </Content>
             <Content>
               <IconListTaskDeadline />
-              <Text>Senin, 11 Oktober 2021 | 12.00</Text>
+              <Text>{deadline}</Text>
             </Content>
             <Content>
               <IconListTaskClock />
@@ -34,10 +36,14 @@ function TaskDetail(props) {
 TaskDetail.propTypes = {
   show: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  description: PropTypes.string.isRequired,
+  deadline: PropTypes.string.isRequired,
 };
 
 TaskDetail.defaultProps = {
   show: false,
+  disabled: false,
 };
 
 export default TaskDetail;
@@ -45,6 +51,7 @@ export default TaskDetail;
 const Container = styled.div`
     display: ${({ show }) => (show === 'entered' || show === 'entering' ? 'flex' : 'none')};
     opacity: ${({ show }) => (show === 'entering' ? '.3' : '1')};
+    opacity: ${({ disabled }) => disabled && '.3'};
     flex-direction: column;
     padding: 4px 28px 8px;
     border-bottom: 1px solid ${theme.color.black_10};
