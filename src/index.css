@@ -18,6 +18,12 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+button {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
