@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Transition } from 'react-transition-group';
-import { ReactComponent as AddIcon } from '../../assets/svg/add-icon.svg';
+import { IconAdd } from '../../assets';
 
 function Add({ clicked, onClick }) {
   return (
     <Transition in={clicked} timeout={200}>
       {(state) => (
         <Container state={state} onClick={onClick}>
-          <AddIcon />
+          <IconAdd />
         </Container>
       )}
     </Transition>

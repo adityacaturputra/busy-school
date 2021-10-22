@@ -2,9 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { IconListTask } from '../../../assets';
-import { ReactComponent as IconListTaskCross } from '../../../assets/svg/IconListTaskCross.svg';
-import { ReactComponent as IconListTaskCheck } from '../../../assets/svg/IconListTaskCheck.svg';
+import { IconListTask, IconListTaskCross, IconListTaskCheck } from '../../../assets';
 import theme from '../../../config/theme';
 import TaskDetail from './TaskDetail';
 

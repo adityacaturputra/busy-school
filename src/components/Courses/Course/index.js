@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { IconCourse, IconDestination } from '../../../assets';
+import { IconCourse, IconDestination, IconTeacher } from '../../../assets';
 import { Gap } from '../../../style';
 import theme from '../../../config/theme';
-import IconTeacher from '../../../assets/svg/IconTeacher';
 
 const Course = (props) => {
   const {

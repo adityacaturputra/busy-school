@@ -1,7 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconCurrentTasksTitle from '../../assets/svg/IconCurrentTasksTitle';
+import { IconCurrentTasksTitle } from '../../assets';
 import TitleWithIcon from '../TitleWithIcon';
 import Task from './Task';
 
