@@ -25,5 +25,6 @@ module.exports = {
     'no-console': 'warn',
     'no-empty': 'warn',
     'no-irregular-whitespace': 'warn',
+    'linebreak-style': 'off',
   },
 };
