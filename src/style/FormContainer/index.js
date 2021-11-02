@@ -5,6 +5,9 @@ const FormContainer = styled(Form)`
 @media (min-width: 1024px){
     height: unset;
   }
+@media (max-height: 768px){
+  max-height: 75vh;
+  }
   height: 500px;
   padding: 36px;
   background-color: #fff;
