@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addCourse } from '../../../store/actions';
 import { FormContainer } from '../../../style';
+import { TitleForm } from '../../../style/Form';
 
 export default function AddCourse({ closeForm }) {
   const [addCourseForm, setAddCourseForm] = useState({
@@ -16,7 +17,7 @@ export default function AddCourse({ closeForm }) {
   });
   const dispatch = useDispatch();
 
-  const handleForm = (type) => async (e) => {
+  const handleForm = (type) => (e) => {
     if (type === 'submit') {
       e.preventDefault();
       dispatch(addCourse(addCourseForm));
@@ -28,6 +29,7 @@ export default function AddCourse({ closeForm }) {
 
   return (
     <FormContainer>
+      <TitleForm text="Tambah Mata Kuliah" />
       <form onChange={handleForm()} onSubmit={handleForm('submit')}>
         <label htmlFor="mata-kuliah">Nama Mata Kuliah</label>
         <input type="text" placeholder="e.g. Matematika Informatika" id="mata-kuliah" name="name" />

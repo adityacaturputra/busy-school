@@ -5,7 +5,7 @@ import Tasks from '../../components/Tasks';
 import Header from '../../components/Header';
 import { IconTask } from '../../assets';
 import { Wrapper } from '../../style';
-import Modal from '../../components/Modal';
+import { Modal } from '../../components';
 import AddTask from './AddTask';
 
 function Task(props) {

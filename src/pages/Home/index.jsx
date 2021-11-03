@@ -1,18 +1,22 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Wrapper } from '../../style';
 import Nav from '../../components/Nav';
 import { IconHome } from '../../assets';
 import Header from '../../components/Header';
 import Courses from '../../components/Courses';
 import Tasks from '../../components/Tasks';
+import { getDay } from '../../utils';
 
 function Home(props) {
+  const { mataKuliah: coursesData } = useSelector((state) => state.courses);
+  const matkulDayFilter = (day) => coursesData.filter((course) => course.day === day);
   return (
     <>
       <Header Icon={<IconHome size="24px" />} title="Selamat Datang" description="30120044" />
       <Wrapper>
-        <Courses />
+        <Courses data={matkulDayFilter(getDay())} />
         <Tasks />
       </Wrapper>
       <Nav active="home" />

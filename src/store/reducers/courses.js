@@ -1,6 +1,10 @@
 import { ADD_COURSE, FETCH_COURSES } from '../../lib/constants';
 
-const coursesReducer = (courses = {}, action) => {
+const initialState = {
+  mataKuliah: [],
+};
+
+const coursesReducer = (courses = initialState, action) => {
   switch (action.type) {
     case FETCH_COURSES:
       return action.payload;

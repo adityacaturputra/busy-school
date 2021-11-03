@@ -2,15 +2,6 @@ import styled from 'styled-components';
 import theme from '../../config/theme';
 
 const Form = styled.div`
-  ::before {
-    display: block;
-    content: "Tambah Mata Kuliah";
-    padding: 0 0 36px 0;
-    font-size: 24px;
-    font-weight: 500;
-    color: ${theme.color.black_70};
-    text-align: center;
-  }
   height: 100%;
   overflow-y: auto;
   label {
@@ -81,6 +72,18 @@ const Form = styled.div`
     &:active {
         background-color: ${theme.color.black_50};
     }
+  }
+`;
+
+export const TitleForm = styled.div`
+  ::before {
+    display: block;
+    content: "${(props) => (props.text)}";
+    padding: 0 0 36px 0;
+    font-size: 24px;
+    font-weight: 500;
+    color: ${theme.color.black_70};
+    text-align: center;
   }
 `;
 

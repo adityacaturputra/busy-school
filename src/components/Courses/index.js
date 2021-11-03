@@ -8,22 +8,21 @@ import { IconCurrentScheduleTitle } from '../../assets';
 import { Gap } from '../../style';
 import TitleWithIcon from '../TitleWithIcon';
 import Course from './Course';
+import { capitalizeFirstLetter, timeSorter } from '../../utils';
+import Fade from '../Animation/Fade';
 
 export default function Courses({ day, data }) {
-  const timeHHDDToIntFormatter = (time) => {
-    const SplittedTime = time.split(':');
-    return parseInt(SplittedTime[0] * 3600 + SplittedTime[1] * 60);
-  };
+  if (data.length === 0) return <></>;
 
-  const matkulTimeSorter = (coursesData) => coursesData.sort((course1, course2) => timeHHDDToIntFormatter(course1['start-time']) - timeHHDDToIntFormatter(course2['start-time']));
-
-  const dataSorted = matkulTimeSorter(data);
+  const dataSorted = timeSorter(data);
   return (
     <>
-      <TitleWithIcon title={day} Icon={<IconCurrentScheduleTitle size="24px" />} />
+      <TitleWithIcon title={capitalizeFirstLetter(day)} Icon={<IconCurrentScheduleTitle size="24px" />} />
       {
-         dataSorted.map((courseData) => (
-           <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={courseData['start-time']} key={courseData.id} />
+         dataSorted.map((courseData, i) => (
+           <Fade duration={i * 200}>
+             <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={courseData['start-time']} key={courseData.id} />
+           </Fade>
          ))
       }
       <Gap height="36px" />
