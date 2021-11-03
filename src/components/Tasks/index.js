@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { IconCurrentTasksTitle } from '../../assets';
 import TitleWithIcon from '../TitleWithIcon';
 import Task from './Task';
+import Fade from '../Animation/Fade';
 
 const taskList = [
   {
@@ -32,8 +33,10 @@ export default function Tasks(props) {
     <>
       <TitleWithIcon title="Pengingat Tugas" Icon={<IconCurrentTasksTitle size="24px" />} />
       {
-        taskList.map((task) => (
-          <Task title={task.title} description={task.description} deadline={task.deadline} />
+        taskList.map((task, i) => (
+          <Fade duration={i * 250}>
+            <Task title={task.title} description={task.description} deadline={task.deadline} />
+          </Fade>
         ))
       }
     </>
