@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -6,36 +7,15 @@ import TitleWithIcon from '../TitleWithIcon';
 import Task from './Task';
 import Fade from '../Animation/Fade';
 
-const taskList = [
-  {
-    title: 'Pemrograman Olah Berkas',
-    description: 'Istilah - istilah dalam pemrograman cobol',
-    deadline: '2 Mei 2021',
-  },
-  {
-    title: 'Pemrograman Olah Berkas',
-    description: 'Istilah - istilah dalam pemrograman cobol',
-    deadline: '2 Mei 2021',
-  },
-  {
-    title: 'Pemrograman Olah Berkas',
-    description: 'Istilah - istilah dalam pemrograman cobol',
-    deadline: '2 Mei 2021',
-  },
-  {
-    title: 'Pemrograman Olah Berkas',
-    description: 'Istilah - istilah dalam pemrograman cobol',
-    deadline: '2 Mei 2021',
-  },
-];
 export default function Tasks(props) {
+  const { list } = props;
   return (
     <>
       <TitleWithIcon title="Pengingat Tugas" Icon={<IconCurrentTasksTitle size="24px" />} />
       {
-        taskList.map((task, i) => (
+        list.map((task, i) => (
           <Fade duration={i * 250}>
-            <Task title={task.title} description={task.description} deadline={task.deadline} />
+            <Task title={task.title} description={task.description} deadlineDate={task.deadlineDate} deadlineTime={task.deadlineTime} />
           </Fade>
         ))
       }
@@ -44,7 +24,9 @@ export default function Tasks(props) {
 }
 
 Tasks.propTypes = {
+  list: PropTypes.array,
 };
 
 Tasks.defaultProps = {
+  list: [],
 };

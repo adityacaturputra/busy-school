@@ -7,7 +7,7 @@ import { IconListTaskClock, IconListTaskDeadline, IconListTaskDescription } from
 
 function TaskDetail(props) {
   const {
-    onClick, show, disabled, description, deadline,
+    onClick, show, disabled, description, deadlineDate, deadlineTime,
   } = props;
   return (
     <>
@@ -20,11 +20,11 @@ function TaskDetail(props) {
             </Content>
             <Content>
               <IconListTaskDeadline />
-              <Text>{deadline}</Text>
+              <Text>{deadlineDate}</Text>
             </Content>
             <Content>
               <IconListTaskClock />
-              <Text>1 Hari 3 Jam</Text>
+              <Text>{deadlineTime}</Text>
             </Content>
           </Container>
         )}
@@ -38,7 +38,8 @@ TaskDetail.propTypes = {
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   description: PropTypes.string.isRequired,
-  deadline: PropTypes.string.isRequired,
+  deadlineDate: PropTypes.string.isRequired,
+  deadlineTime: PropTypes.string.isRequired,
 };
 
 TaskDetail.defaultProps = {

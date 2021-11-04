@@ -7,7 +7,7 @@ import theme from '../../../config/theme';
 import TaskDetail from './TaskDetail';
 
 export default function Task({
-  title, description, deadline, disabled,
+  title, description, deadlineDate, deadlineTime, disabled,
 }) {
   const [taskDetailShow, setTaskDetailShow] = useState(false);
 
@@ -32,7 +32,7 @@ export default function Task({
             : <IconListTaskCheck onClick={handleCheckTask} />
         }
       </Container>
-      <TaskDetail description={description} deadline={deadline} show={taskDetailShow} onClick={() => setTaskDetailShow(!taskDetailShow)} disabled={disabled} />
+      <TaskDetail description={description} deadlineDate={deadlineDate} deadlineTime={deadlineTime} show={taskDetailShow} onClick={() => setTaskDetailShow(!taskDetailShow)} disabled={disabled} />
 
     </>
   );
@@ -59,7 +59,8 @@ const Container = styled.div`
 Task.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  deadline: PropTypes.string.isRequired,
+  deadlineDate: PropTypes.string.isRequired,
+  deadlineTime: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
 };
 
