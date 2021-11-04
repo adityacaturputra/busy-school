@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Router from './Router';
-import { getCourses } from './store/actions';
+import { getCourses, getTasks } from './store/actions';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCourses());
+    dispatch(getTasks());
   }, [dispatch]);
   return (
     <>

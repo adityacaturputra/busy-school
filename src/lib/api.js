@@ -30,3 +30,26 @@ export const sendCourse = async (courseForm) => {
     console.log(error);
   }
 };
+
+export const fetchTasks = async () => {
+  try {
+    const { data: list, error } = await supabase.from('tasks').select('*');
+    return { list, error };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const sendTask = async (taskForm) => {
+  try {
+    const { data, error } = await supabase
+      .from('tasks')
+      .insert([
+        taskForm,
+      ]);
+    console.log(data);
+    return { list: data[0], error };
+  } catch (error) {
+    console.log(error);
+  }
+};
