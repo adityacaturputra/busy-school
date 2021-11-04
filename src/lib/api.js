@@ -53,3 +53,29 @@ export const sendTask = async (taskForm) => {
     console.log(error);
   }
 };
+
+export const sendCheckTask = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from('tasks')
+      .update({ disabled: true })
+      .eq('id', id);
+
+    return { task: data[0], error };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const sendUnCheckTask = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from('tasks')
+      .update({ disabled: false })
+      .eq('id', id);
+
+    return { task: data[0], error };
+  } catch (error) {
+    console.log(error);
+  }
+};

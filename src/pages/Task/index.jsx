@@ -12,12 +12,11 @@ import AddTask from './AddTask';
 function Task(props) {
   const [addClick, setAddClick] = useState(false);
   const { list, error } = useSelector((state) => state.tasks);
-  console.log(list);
-
+  const unCompleteTask = list.filter((task) => !task.disabled);
   const closeForm = () => setAddClick(false);
   return (
     <div>
-      <Header Icon={<IconTask size="24px" />} title="Tugas Kamu" description="3 Tugas" />
+      <Header Icon={<IconTask size="24px" />} title={`${list.length} Tugas`} description={`${unCompleteTask.length} Tugas Belum Diselesaikan`} />
       <Wrapper>
         <Tasks list={list} />
       </Wrapper>

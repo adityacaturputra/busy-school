@@ -9,15 +9,18 @@ import Fade from '../Animation/Fade';
 
 export default function Tasks(props) {
   const { list } = props;
+  if (list !== 0) console.log(list[0]);
   return (
     <>
       <TitleWithIcon title="Pengingat Tugas" Icon={<IconCurrentTasksTitle size="24px" />} />
       {
-        list.map((task, i) => (
-          <Fade duration={i * 250}>
-            <Task title={task.title} description={task.description} deadlineDate={task.deadlineDate} deadlineTime={task.deadlineTime} />
-          </Fade>
-        ))
+        list === 0
+          ? <></>
+          : list.map((task, i) => (
+            <Fade duration={i * 250}>
+              <Task task={task} />
+            </Fade>
+          ))
       }
     </>
   );

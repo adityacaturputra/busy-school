@@ -11,13 +11,15 @@ import { getDay } from '../../utils';
 
 function Home(props) {
   const { mataKuliah: coursesData } = useSelector((state) => state.courses);
+  const { list, error } = useSelector((state) => state.tasks);
   const matkulDayFilter = (day) => coursesData.filter((course) => course.day === day);
+  const unCompleteTask = list.filter((task) => !task.disabled);
   return (
     <>
       <Header Icon={<IconHome size="24px" />} title="Selamat Datang" description="30120044" />
       <Wrapper>
         <Courses data={matkulDayFilter(getDay())} />
-        <Tasks />
+        <Tasks list={unCompleteTask} />
       </Wrapper>
       <Nav active="home" />
     </>

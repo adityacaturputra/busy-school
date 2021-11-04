@@ -1,23 +1,29 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { IconListTask, IconListTaskCross, IconListTaskCheck } from '../../../assets';
 import theme from '../../../config/theme';
 import TaskDetail from './TaskDetail';
+import { checkTask, unCheckTask } from '../../../store/actions';
 
-export default function Task({
-  title, description, deadlineDate, deadlineTime, disabled,
-}) {
+export default function Task(props) {
+  const {
+    title, description, deadlineDate, deadlineTime, disabled, id,
+  } = props.task;
   const [taskDetailShow, setTaskDetailShow] = useState(false);
-
-  const handleCheckTask = (e) => {
-    alert('hello checked');
+  const dispatch = useDispatch();
+  const handleCheckTask = (taskId) => (e) => {
+    dispatch(checkTask(taskId));
     e.stopPropagation();
   };
 
-  const handleUncheckTask = (e) => {
-    alert('hello unchecked');
+  const handleUncheckTask = (taskId) => (e) => {
+    dispatch(unCheckTask(taskId));
     e.stopPropagation();
   };
 
@@ -28,8 +34,8 @@ export default function Task({
         <p>{title}</p>
         {
           disabled
-            ? <IconListTaskCross onClick={handleUncheckTask} />
-            : <IconListTaskCheck onClick={handleCheckTask} />
+            ? <IconListTaskCross onClick={handleUncheckTask(id)} />
+            : <IconListTaskCheck onClick={handleCheckTask(id)} />
         }
       </Container>
       <TaskDetail description={description} deadlineDate={deadlineDate} deadlineTime={deadlineTime} show={taskDetailShow} onClick={() => setTaskDetailShow(!taskDetailShow)} disabled={disabled} />
@@ -62,6 +68,7 @@ Task.propTypes = {
   deadlineDate: PropTypes.string.isRequired,
   deadlineTime: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  // key: PropTypes.any.isRequired,
 };
 
 Task.defaultProps = {
