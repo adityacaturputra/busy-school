@@ -19,10 +19,10 @@ const tasksReducer = (tasks = initialState, action) => {
         error: action.payload.error,
       };
     case CHECK_TASK:
-      const newTask = tasks.list.filter((task) => task.id !== action.payload.task.id)[0];
+      const newTask = tasks.list.filter((task) => task.id !== action.payload.task.id);
       return {
         list: [
-          newTask,
+          ...newTask,
           action.payload.task,
         ],
         error: action.payload.error,
