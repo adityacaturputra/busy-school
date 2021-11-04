@@ -26,7 +26,7 @@ function Schedule() {
       <Header Icon={<IconSchedule size="24px" />} title="Minggu ke-3" description={getDate()} />
       <Wrapper>
         {week.map((day, i) => (
-          <Fade duration={i * 600}>
+          <Fade duration={i * 300}>
             {i === 0 && <Courses data={matkulDayFilter(getDay())} />}
             <Courses day={day} data={matkulDayFilter(day)} />
           </Fade>

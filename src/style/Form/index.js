@@ -11,7 +11,7 @@ const Form = styled.div`
     margin-bottom: 8px;
     display: block;
   }
-  input[type="text"] {
+  input[type="text"], select, option, input[type="date"] {
     width: 256px;
     padding: 4px;
     margin-bottom: 24px;
@@ -43,9 +43,6 @@ const Form = styled.div`
   }
   input[type="radio"]:checked + label {
     border-color: ${theme.color.black_50};
-  }
-  label:hover {
-  background-color: ${theme.color.black_10};
   }
   input[type="time"] {
       color: ${theme.color.black_70};
