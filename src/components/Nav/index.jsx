@@ -55,7 +55,7 @@ export default function Nav(props) {
 }
 
 Nav.propTypes = {
-  active: PropTypes.oneOf(['home', 'schedule', 'task', 'profile']),
+  active: PropTypes.string,
 };
 
 Nav.defaultProps = {

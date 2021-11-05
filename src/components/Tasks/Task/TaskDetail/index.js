@@ -38,7 +38,7 @@ TaskDetail.propTypes = {
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   description: PropTypes.string.isRequired,
-  deadlineDate: PropTypes.string.isRequired,
+  deadlineDate: PropTypes.instanceOf(Date).isRequired,
   deadlineTime: PropTypes.string.isRequired,
 };
 

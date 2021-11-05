@@ -7,7 +7,7 @@ import { TitleForm } from '../../../style/Form';
 import { sendTask } from '../../../lib/api';
 import { addTasks } from '../../../store/actions';
 
-function AddTask(props) {
+function AddTask({ closeForm }) {
   const [addTaskForm, setAddTaskForm] = useState({
     title: '',
     description: '',
@@ -24,6 +24,7 @@ function AddTask(props) {
       e.preventDefault();
       console.log(addTaskForm);
       dispatch(addTasks(addTaskForm));
+      closeForm();
       return;
     }
     setAddTaskForm({ ...addTaskForm, [e.target.name]: e.target.value });
@@ -57,7 +58,7 @@ function AddTask(props) {
 }
 
 AddTask.propTypes = {
-
+  closeForm: PropTypes.func.isRequired,
 };
 
 export default AddTask;
