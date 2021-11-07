@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import Nav from '../../components/Nav';
 import Tasks from '../../components/Tasks';
@@ -9,9 +8,9 @@ import { Wrapper } from '../../style';
 import { Modal } from '../../components';
 import AddTask from './AddTask';
 
-function Task(props) {
+function Task() {
   const [addClick, setAddClick] = useState(false);
-  const { list, error } = useSelector((state) => state.tasks);
+  const { list } = useSelector((state) => state.tasks);
   const unCompleteTask = list.filter((task) => !task.disabled);
   const closeForm = () => setAddClick(false);
   return (
