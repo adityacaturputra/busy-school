@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable max-len */
 /* eslint-disable react/forbid-prop-types */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { IconCurrentTasksTitle } from '../../assets';
 import TitleWithIcon from '../TitleWithIcon';
@@ -19,7 +19,7 @@ export default function Tasks(props) {
         list.length === 0
           ? <h1 style={{ textAlign: 'center' }}>Tidak ada tugas</h1>
           : list.map((task) => (
-            <Task task={task} />
+            <Task task={task} key={task.id} />
           ))
         }
       </Fade>

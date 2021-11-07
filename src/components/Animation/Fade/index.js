@@ -7,10 +7,11 @@ function Fade(props) {
   const { children, duration } = props;
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    setTimeout(() => {
+    const appearVisibility = setTimeout(() => {
       setVisible(true);
     }, duration);
     return () => {
+      clearTimeout(appearVisibility);
     };
   }, []);
   return (

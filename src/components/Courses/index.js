@@ -20,8 +20,8 @@ export default function Courses({ day, data }) {
       <TitleWithIcon title={capitalizeFirstLetter(day)} Icon={<IconCurrentScheduleTitle size="24px" />} />
       {
          dataSorted.map((courseData, i) => (
-           <Fade duration={i * 200}>
-             <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={courseData['start-time']} key={courseData.id} />
+           <Fade duration={i * 200} key={courseData.id}>
+             <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={courseData['start-time']} />
            </Fade>
          ))
       }
