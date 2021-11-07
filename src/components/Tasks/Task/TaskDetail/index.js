@@ -20,7 +20,7 @@ function TaskDetail(props) {
             </Content>
             <Content>
               <IconListTaskDeadline />
-              <Text>{deadlineDate}</Text>
+              <Text>{deadlineDate.toDateString()}</Text>
             </Content>
             <Content>
               <IconListTaskClock />

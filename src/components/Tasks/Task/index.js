@@ -38,7 +38,7 @@ export default function Task(props) {
             : <IconListTaskCheck onClick={handleCheckTask(id)} />
         }
       </Container>
-      <TaskDetail description={description} deadlineDate={deadlineDate} deadlineTime={deadlineTime} show={taskDetailShow} onClick={() => setTaskDetailShow(!taskDetailShow)} disabled={disabled} />
+      <TaskDetail description={description} deadlineDate={new Date(deadlineDate)} deadlineTime={deadlineTime} show={taskDetailShow} onClick={() => setTaskDetailShow(!taskDetailShow)} disabled={disabled} />
 
     </>
   );
@@ -63,14 +63,16 @@ const Container = styled.div`
 `;
 
 Task.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  deadlineDate: PropTypes.string.isRequired,
-  deadlineTime: PropTypes.string.isRequired,
-  disabled: PropTypes.bool,
+  // title: PropTypes.string.isRequired,
+  // description: PropTypes.string.isRequired,
+  // deadlineDate: PropTypes.string.isRequired,
+  // deadlineTime: PropTypes.string.isRequired,
+  // disabled: PropTypes.bool,
   // key: PropTypes.any.isRequired,
+  task: PropTypes.object.isRequired,
 };
 
 Task.defaultProps = {
-  disabled: false,
+  // disabled: false,
+
 };
