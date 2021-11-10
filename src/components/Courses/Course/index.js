@@ -32,8 +32,7 @@ Course.propTypes = {
   title: PropTypes.string.isRequired,
   place: PropTypes.string.isRequired,
   teacher: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  time: PropTypes.any.isRequired,
+  time: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   last: PropTypes.bool,
 };

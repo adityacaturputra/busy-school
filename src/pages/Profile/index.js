@@ -1,10 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Nav from '../../components/Nav';
+import { Nav } from '../../components';
 import { Wrapper } from '../../style';
 
-function Profile(props) {
+function Profile() {
   return (
     <>
       <Wrapper>

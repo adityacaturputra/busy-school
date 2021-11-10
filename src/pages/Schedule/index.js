@@ -4,22 +4,21 @@
 import React, { useState } from 'react';
 
 import { useSelector } from 'react-redux';
-import Nav from '../../components/Nav';
+import {
+  Nav, Courses, Header, Modal,
+  Fade,
+} from '../../components';
 import { Wrapper } from '../../style';
-import Courses from '../../components/Courses';
-import Header from '../../components/Header';
 import { IconSchedule } from '../../assets';
 import AddCourse from './AddCourse';
-import { Modal } from '../../components';
 import { getDate, getDay, getWeek } from '../../utils';
-import Fade from '../../components/Animation/Fade';
 
 function Schedule() {
   const { mataKuliah: coursesData } = useSelector((state) => state.courses);
   const [addClick, setAddClick] = useState(false);
   const week = getWeek();
   const closeForm = () => setAddClick(false);
-  const matkulDayFilter = (day) => coursesData.filter((course) => course.day === day);
+  const matkulDayFilter = (day) => coursesData?.filter((course) => course.day === day);
 
   return (
     <>

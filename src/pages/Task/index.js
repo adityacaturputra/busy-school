@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Nav from '../../components/Nav';
-import Tasks from '../../components/Tasks';
-import Header from '../../components/Header';
+import {
+  Nav, Tasks, Header, Modal,
+} from '../../components';
 import { IconTask } from '../../assets';
 import { Wrapper } from '../../style';
-import { Modal } from '../../components';
 import AddTask from './AddTask';
 
 function Task() {

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormContainer } from '../../../style';
 import { TitleForm } from '../../../style/Form';
-import { sendTask } from '../../../lib/api';
 import { addTasks } from '../../../store/actions';
 
 function AddTask({ closeForm }) {
@@ -22,7 +21,6 @@ function AddTask({ closeForm }) {
   const handleForm = (type) => async (e) => {
     if (type === 'submit') {
       e.preventDefault();
-      console.log(addTaskForm);
       dispatch(addTasks(addTaskForm));
       closeForm();
       return;

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable consistent-return */
 import { createClient } from '@supabase/supabase-js';
 import { REACT_APP_SUPABASE_URL, REACT_APP_SUPABASE_KEY } from './constants';
@@ -33,8 +34,8 @@ export const sendCourse = async (courseForm) => {
 
 export const fetchTasks = async () => {
   try {
-    const { data: list, error } = await supabase.from('tasks').select('*');
-    return { list, error };
+    const { data, error } = await supabase.from('tasks').select('*');
+    return { list: data, error };
   } catch (error) {
     console.log(error);
   }
@@ -47,7 +48,6 @@ export const sendTask = async (taskForm) => {
       .insert([
         taskForm,
       ]);
-    console.log(data);
     return { list: data[0], error };
   } catch (error) {
     console.log(error);

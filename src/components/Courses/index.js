@@ -9,7 +9,7 @@ import { Gap } from '../../style';
 import TitleWithIcon from '../TitleWithIcon';
 import Course from './Course';
 import { capitalizeFirstLetter, timeSorter } from '../../utils';
-import Fade from '../Animation/Fade';
+import { Fade } from '../Animation';
 
 export default function Courses({ day, data }) {
   if (data.length === 0) return <></>;

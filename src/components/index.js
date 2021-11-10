@@ -1,4 +1,5 @@
 import Add from './Add';
+import { Fade } from './Animation';
 import Courses from './Courses';
 import Header from './Header';
 import Modal from './Modal';
@@ -7,5 +8,5 @@ import Tasks from './Tasks';
 import TitleWithIcon from './TitleWithIcon';
 
 export {
-  Add, Courses, Header, Modal, Nav, Tasks, TitleWithIcon,
+  Add, Fade, Courses, Header, Modal, Nav, Tasks, TitleWithIcon,
 };

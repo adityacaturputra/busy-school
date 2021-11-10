@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
 import {
   fetchCourses, fetchTasks, sendCheckTask, sendCourse, sendTask, sendUnCheckTask,

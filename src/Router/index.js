@@ -21,9 +21,9 @@ function Router() {
         <Task />
       </Route>
 
-      <Route path="/profile">
+      {/* <Route path="/profile">
         <Profile />
-      </Route>
+      </Route> */}
 
     </Switch>
   );

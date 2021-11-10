@@ -43,9 +43,9 @@ export default function Nav(props) {
               <NavItem to="/task" active={active === 'task'}>
                 <IconTask />
               </NavItem>
-              <NavItem to="profile" active={active === 'profile'}>
+              {/* <NavItem to="profile" active={active === 'profile'}>
                 <IconProfile />
-              </NavItem>
+              </NavItem> */}
             </Container>
           )
           }
@@ -107,25 +107,25 @@ const Container = styled.div`
   }
   transition: .3s;
   @media (max-width: 1024px) {
-  // enter from
-  &.animate-enter {
-    transform: translateY(100%);
-  }
+    // enter from
+    &.animate-enter {
+      transform: translateY(100%);
+    }
 
-  // enter to
-  &.animate-enter-active {
-    transform: translateY(0);
-  }
+    // enter to
+    &.animate-enter-active {
+      transform: translateY(0);
+    }
 
-  // exit from
-  &.animate-exit {
-    transform: translateY(0);
-  }
+    // exit from
+    &.animate-exit {
+      transform: translateY(0);
+    }
 
-  // exit to 
-  &.animate-exit-active {
-    transform: translateY(100%);
-  }
+    // exit to 
+    &.animate-exit-active {
+      transform: translateY(100%);
+    }
   }
 `;
 
@@ -144,8 +144,5 @@ const NavItem = styled(Link)`
   }
   :hover{
     border-bottom: 2px solid ${theme.color.black_30};
-  }
-  :active{
-    opacity: .2;
   }
 `;

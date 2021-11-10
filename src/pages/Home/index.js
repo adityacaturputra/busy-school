@@ -2,17 +2,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Wrapper } from '../../style';
-import Nav from '../../components/Nav';
 import { IconHome } from '../../assets';
-import Header from '../../components/Header';
-import Courses from '../../components/Courses';
-import Tasks from '../../components/Tasks';
+import {
+  Header, Courses, Tasks, Nav,
+} from '../../components';
 import { getDay } from '../../utils';
 
-function Home(props) {
+function Home() {
   const { mataKuliah: coursesData } = useSelector((state) => state.courses);
-  const { list, error } = useSelector((state) => state.tasks);
-  const matkulDayFilter = (day) => coursesData.filter((course) => course.day === day);
+  const { list } = useSelector((state) => state.tasks);
+  const matkulDayFilter = (day) => coursesData?.filter((course) => course.day === day);
   const unCompleteTask = list.filter((task) => !task.disabled);
   return (
     <>
