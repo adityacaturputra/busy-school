@@ -1,12 +1,5 @@
 /* eslint-disable radix */
-export const getDate = () => {
-  const dateObj = new Date();
-  const month = dateObj.getMonth() + 1; // months from 1-12
-  const day = dateObj.getDate();
-  const year = dateObj.getFullYear();
-
-  return `${day}/${month}/${year}`;
-};
+export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
 export const getWeek = () => {
   const weekArray = new Array(7);
@@ -20,10 +13,27 @@ export const getWeek = () => {
   return weekArray;
 };
 
+const getMonthNames = (monthNumber) => {
+  const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember',
+  ];
+
+  return monthNames[monthNumber];
+};
+
 export const getDay = () => {
   const d = new Date();
   const weekday = getWeek();
   return weekday[d.getDay()];
+};
+
+export const getDate = (YearMonthDayDateFormat) => {
+  const dateObj = YearMonthDayDateFormat ? new Date(YearMonthDayDateFormat) : new Date();
+  const month = getMonthNames(dateObj.getMonth()); // months from 1-12
+  const day = dateObj.getDate();
+  const year = dateObj.getFullYear();
+
+  return `${capitalizeFirstLetter(getDay())}, ${day} ${month} ${year}`;
 };
 
 export const timeHHDDToIntFormatter = (time) => {
@@ -32,5 +42,3 @@ export const timeHHDDToIntFormatter = (time) => {
 };
 
 export const timeSorter = (coursesData) => coursesData.sort((course1, course2) => timeHHDDToIntFormatter(course1['start-time']) - timeHHDDToIntFormatter(course2['start-time']));
-
-export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
