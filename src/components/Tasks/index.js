@@ -13,14 +13,26 @@ export default function Tasks(props) {
   return (
     <>
       <Fade duration={250}>
-
         <TitleWithIcon title="Pengingat Tugas" Icon={<IconCurrentTasksTitle size="24px" />} />
         {
         list.length === 0
           ? <h1 style={{ textAlign: 'center' }}>Tidak ada tugas</h1>
-          : list.map((task) => (
-            <Task task={task} key={task.id} />
-          ))
+          : (
+            <>
+              {
+              list.map((task) => (
+                !task.disabled
+                && <Task task={task} key={task.id} />
+              ))
+              }
+              {
+                list.map((task) => (
+                  task.disabled
+                  && <Task task={task} key={task.id} />
+                ))
+              }
+            </>
+          )
         }
       </Fade>
     </>

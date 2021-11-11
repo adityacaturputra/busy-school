@@ -10,6 +10,7 @@ import { IconListTask, IconListTaskCross, IconListTaskCheck } from '../../../ass
 import theme from '../../../config/theme';
 import TaskDetail from './TaskDetail';
 import { checkTask, unCheckTask } from '../../../store/actions';
+import { Fade } from '../../Animation';
 
 export default function Task(props) {
   const {
@@ -28,7 +29,7 @@ export default function Task(props) {
   };
 
   return (
-    <>
+    <Fade>
       <Container onClick={() => setTaskDetailShow(!taskDetailShow)} disabled={disabled}>
         <IconListTask disabled={disabled} />
         <p>{title}</p>
@@ -38,9 +39,9 @@ export default function Task(props) {
             : <IconListTaskCheck onClick={handleCheckTask(id)} />
         }
       </Container>
-      <TaskDetail description={description} deadlineDate={new Date(deadlineDate)} deadlineTime={deadlineTime} show={taskDetailShow} onClick={() => setTaskDetailShow(!taskDetailShow)} disabled={disabled} />
+      <TaskDetail description={description} deadlineDate={deadlineDate} deadlineTime={deadlineTime} show={taskDetailShow} onClick={() => setTaskDetailShow(!taskDetailShow)} disabled={disabled} />
 
-    </>
+    </Fade>
   );
 }
 
