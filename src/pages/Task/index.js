@@ -14,7 +14,7 @@ function Task() {
   const closeForm = () => setAddClick(false);
   return (
     <div>
-      <Header Icon={<IconTask size="24px" />} title={`${list.length} Tugas`} description={`${unCompleteTask.length} Tugas Belum Diselesaikan`} />
+      <Header Icon={<IconTask size="24px" />} title={`${unCompleteTask.length} tugas`} description={`${list.length} tugas sudah diselesaikan`} />
       <Wrapper>
         <Tasks list={list} />
       </Wrapper>

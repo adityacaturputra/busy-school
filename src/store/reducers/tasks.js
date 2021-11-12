@@ -5,23 +5,7 @@
 import {
   ADD_TASK, CHECK_TASK, FETCH_TASKS,
 } from '../../lib/constants';
-
-const convertTaskDateToMiliSeconds = (task) => Date.parse(`${task.deadlineDate}T${task.deadlineTime}:00`);
-const sortNewList = (tasks, list) => {
-  list.deadlineDateMiliSeconds = convertTaskDateToMiliSeconds(list);
-  tasks.push(list);
-  const newTasks = tasks.sort((task1, task2) => task1.deadlineDateMiliSeconds - task2.deadlineDateMiliSeconds);
-  return newTasks;
-};
-
-const sortList = (list) => {
-  const newList = list.sort((task1, task2) => {
-    task1.deadlineDateMiliSeconds = convertTaskDateToMiliSeconds(task1);
-    task2.deadlineDateMiliSeconds = convertTaskDateToMiliSeconds(task2);
-    return task1.deadlineDateMiliSeconds - task2.deadlineDateMiliSeconds;
-  });
-  return newList;
-};
+import { sortList, sortNewList } from '../../utils';
 
 const initialState = {
   list: [],
@@ -31,22 +15,18 @@ const tasksReducer = (tasks = initialState, action) => {
   switch (action.type) {
     case FETCH_TASKS:
       return {
-        list: [...sortList(action.payload.list)],
+        list: sortList(action.payload.list),
         error: action.payload.error,
       };
     case ADD_TASK:
       return {
-        list: [
-          ...sortNewList(tasks.list, action.payload.list),
-        ],
+        list: sortNewList(tasks.list, action.payload.list),
         error: action.payload.error,
       };
     case CHECK_TASK:
       tasks.list = tasks.list.filter((task) => task.id !== action.payload.task.id);
       return {
-        list: [
-          ...sortNewList(tasks.list, action.payload.task),
-        ],
+        list: sortNewList(tasks.list, action.payload.task),
         error: action.payload.error,
       };
     default:

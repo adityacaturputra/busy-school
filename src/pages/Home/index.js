@@ -6,7 +6,7 @@ import { IconHome } from '../../assets';
 import {
   Header, Courses, Tasks, Nav,
 } from '../../components';
-import { getDay } from '../../utils';
+import { getDayName } from '../../utils';
 
 function Home() {
   const { mataKuliah: coursesData } = useSelector((state) => state.courses);
@@ -17,7 +17,7 @@ function Home() {
     <>
       <Header Icon={<IconHome size="24px" />} title="Selamat Datang" description="30120044" />
       <Wrapper>
-        <Courses data={matkulDayFilter(getDay())} />
+        <Courses data={matkulDayFilter(getDayName())} />
         <Tasks list={unCompleteTask} />
       </Wrapper>
       <Nav active="home" />

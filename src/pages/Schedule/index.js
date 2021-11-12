@@ -11,7 +11,7 @@ import {
 import { Wrapper } from '../../style';
 import { IconSchedule } from '../../assets';
 import AddCourse from './AddCourse';
-import { getDate, getDay, getWeek } from '../../utils';
+import { getDate, getDayName, getWeek } from '../../utils';
 
 function Schedule() {
   const { mataKuliah: coursesData } = useSelector((state) => state.courses);
@@ -26,7 +26,7 @@ function Schedule() {
       <Wrapper>
         {week.map((day, i) => (
           <Fade duration={i * 300} key={day}>
-            {i === 0 && <Courses data={matkulDayFilter(getDay())} />}
+            {i === 0 && <Courses data={matkulDayFilter(getDayName())} />}
             <Courses day={day} data={matkulDayFilter(day)} />
           </Fade>
         ))}
