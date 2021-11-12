@@ -131,5 +131,6 @@ const Text = styled.p`
 `;
 
 const Description = styled(Text)`
+    max-width: 60vw;
     line-height: 1.5;
 `;

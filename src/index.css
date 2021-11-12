@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
-@media (min-width: 400px){
+@media (min-width: 350px){
   p {
     line-height: 0;
   }  
 }
 
-@media (max-width: 400px){
+@media (max-width: 350px){
   p {
     line-height: 1;
   }
