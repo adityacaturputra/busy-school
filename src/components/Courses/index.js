@@ -11,7 +11,7 @@ import Course from './Course';
 import { capitalizeFirstLetter, timeSorter } from '../../utils';
 import { Fade } from '../Animation';
 
-export default function Courses({ day, data }) {
+export default function Courses({ day, data, isCurrentDay }) {
   if (data.length === 0) return <></>;
 
   const dataSorted = timeSorter(data);
@@ -21,7 +21,7 @@ export default function Courses({ day, data }) {
       {
          dataSorted.map((courseData, i) => (
            <Fade duration={i * 200} key={courseData.id}>
-             <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={courseData['start-time']} />
+             <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={{ startTime: courseData['start-time'], endTime: courseData['end-time'] }} isCurrentDay={isCurrentDay} />
            </Fade>
          ))
       }
@@ -33,9 +33,11 @@ export default function Courses({ day, data }) {
 Courses.propTypes = {
   day: PropTypes.string,
   data: PropTypes.array,
+  isCurrentDay: PropTypes.bool,
 };
 
 Courses.defaultProps = {
+  isCurrentDay: false,
   day: 'Mata Kuliah Hari Ini',
   data: [],
 };

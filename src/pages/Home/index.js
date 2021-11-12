@@ -17,7 +17,7 @@ function Home() {
     <>
       <Header Icon={<IconHome size="24px" />} title="Selamat Datang" description="30120044" />
       <Wrapper>
-        <Courses data={matkulDayFilter(getDayName())} />
+        <Courses data={matkulDayFilter(getDayName())} isCurrentDay />
         <Tasks list={unCompleteTask} />
       </Wrapper>
       <Nav active="home" />

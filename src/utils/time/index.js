@@ -50,6 +50,13 @@ export const timeHHDDToIntFormatter = (time) => {
 
 export const timeSorter = (coursesData) => coursesData.sort((course1, course2) => timeHHDDToIntFormatter(course1['start-time']) - timeHHDDToIntFormatter(course2['start-time']));
 
+export const convertDateToSecondsInDay = (date) => {
+  if (!date) {
+    date = new Date();
+  }
+  return (date.getHours() * 3600) + (date.getMinutes() * 60) + date.getSeconds();
+};
+
 // Function for sorting business in tasks reducers
 const convertTaskDateToMiliSeconds = (task) => Date.parse(`${task.deadlineDate}T${task.deadlineTime}:00`);
 export const sortNewList = (tasks, list) => {

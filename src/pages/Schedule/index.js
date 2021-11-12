@@ -17,12 +17,13 @@ function Schedule() {
   const { mataKuliah: coursesData } = useSelector((state) => state.courses);
   const [addClick, setAddClick] = useState(false);
   const week = getWeek();
+  const weekPassed = Math.floor((new Date().getTime() - new Date('2021/9/27').getTime()) / (1000 * 60 * 60 * 24 * 7)) + 1;
   const closeForm = () => setAddClick(false);
   const matkulDayFilter = (day) => coursesData?.filter((course) => course.day === day);
 
   return (
     <>
-      <Header Icon={<IconSchedule size="24px" />} title="Minggu ke-3" description={getDate()} />
+      <Header Icon={<IconSchedule size="24px" />} title={`Minggu ke - ${weekPassed}`} description={getDate()} />
       <Wrapper>
         {week.map((day, i) => (
           <Fade duration={i * 300} key={day}>
