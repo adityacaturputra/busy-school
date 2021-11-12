@@ -10,9 +10,9 @@ export default function IconTask({ size }) {
 }
 
 IconTask.propTypes = {
-  size: PropTypes.number,
+  size: PropTypes.string,
 };
 
 IconTask.defaultProps = {
-  size: 48,
+  size: '48px',
 };
