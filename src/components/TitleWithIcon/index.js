@@ -34,5 +34,4 @@ const Text = styled.p`
     font-weight: 500;
     font-size: 14px;
     color: ${theme.color.black_70};
-    line-height: 0;
 `;

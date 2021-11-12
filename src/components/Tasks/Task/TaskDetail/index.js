@@ -131,5 +131,5 @@ const Text = styled.p`
 `;
 
 const Description = styled(Text)`
-    line-height: 150%;
+    line-height: 1.5;
 `;

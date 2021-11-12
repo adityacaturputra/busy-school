@@ -54,7 +54,6 @@ const Text = styled.p`
   font-size: 14px;
   font-weight: 500;
   color: ${theme.color.black_70};
-  line-height: 0;
 `;
 
 const TextDescription = styled(Text)`
