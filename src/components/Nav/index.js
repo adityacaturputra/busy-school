@@ -35,16 +35,16 @@ export default function Nav(props) {
           () => (
             <Container>
               <NavItem to="/" active={active === 'home'}>
-                <IconHome />
+                <IconHome size={36} />
               </NavItem>
               <NavItem to="/schedule" active={active === 'schedule'}>
-                <IconSchedule />
+                <IconSchedule size={36} />
               </NavItem>
               <NavItem to="/task" active={active === 'task'}>
-                <IconTask />
+                <IconTask size={36} />
               </NavItem>
               {/* <NavItem to="profile" active={active === 'profile'}>
-                <IconProfile />
+                <IconProfile size={36} />
               </NavItem> */}
             </Container>
           )
@@ -94,10 +94,10 @@ const Container = styled.div`
   }
   background-color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   box-sizing: border-box;
   width: 100vw;
-  padding: 12px 36px;
+  padding: 0 18px;
   position: fixed;
   bottom: 0;
   border-top: 2px solid ${theme.color.black_30};
@@ -107,6 +107,7 @@ const Container = styled.div`
   }
   transition: .3s;
   @media (max-width: 1024px) {
+    padding: 12px 0;
     // enter from
     &.animate-enter {
       transform: translateY(100%);
