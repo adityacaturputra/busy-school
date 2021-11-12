@@ -35,16 +35,16 @@ export default function Nav(props) {
           () => (
             <Container>
               <NavItem to="/" active={active === 'home'}>
-                <IconHome size={36} />
+                <IconHome size="36px" />
               </NavItem>
               <NavItem to="/schedule" active={active === 'schedule'}>
-                <IconSchedule size={36} />
+                <IconSchedule size="36px" />
               </NavItem>
               <NavItem to="/task" active={active === 'task'}>
-                <IconTask size={36} />
+                <IconTask size="36px" />
               </NavItem>
               {/* <NavItem to="profile" active={active === 'profile'}>
-                <IconProfile size={36} />
+                <IconProfile size={'36px'} />
               </NavItem> */}
             </Container>
           )
@@ -64,6 +64,7 @@ Nav.defaultProps = {
 
 const Container = styled.div`
   @media (min-width: 1024px) {
+    padding: 18px 36px;
     flex-direction: column;
     width: unset;
     height: 100vh;
@@ -72,6 +73,10 @@ const Container = styled.div`
     position: fixed;
     top: 0;
     float: left;
+    svg {
+      width: 48px;
+      height: 48px;
+    }
     // enter from
     &.animate-enter {
       transform: translateX(-100%);
@@ -97,7 +102,6 @@ const Container = styled.div`
   justify-content: space-around;
   box-sizing: border-box;
   width: 100vw;
-  padding: 0 18px;
   position: fixed;
   bottom: 0;
   border-top: 2px solid ${theme.color.black_30};
@@ -131,19 +135,9 @@ const Container = styled.div`
 `;
 
 const NavItem = styled(Link)`
-  @media (min-width: 1024px) {
-    border-bottom: 2px solid ${(props) => (props.active ? theme.color.black_50 : '#fff')};
-    :hover{
-      border-bottom: 2px solid ${theme.color.black_30};
-    }
-  }
   box-sizing: border-box;
-  border-bottom: 2px solid ${(props) => (props.active ? theme.color.black_50 : '#fff')};
   transition: .3s;
   path {
     fill: ${((props) => (props.active ? theme.color.black_100 : theme.color.black_50))};
-  }
-  :hover{
-    border-bottom: 2px solid ${theme.color.black_30};
   }
 `;

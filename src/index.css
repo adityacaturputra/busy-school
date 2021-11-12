@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
-@media (min-width: 350px){
+/* @media (min-width: 350px){
   p {
     line-height: 0;
   }  
@@ -10,7 +10,7 @@
   p {
     line-height: 1;
   }
-}
+} */
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -40,4 +40,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+p {
+  line-height: 0;
+} 
+
 

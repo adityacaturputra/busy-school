@@ -51,7 +51,10 @@ Header.propTypes = {
 export default Header;
 
 const Text = styled.p`
-  font-size: 14px;
+  @media (min-width: 360px){
+    font-size: 14px;
+  }
+  font-size: 12px;
   font-weight: 500;
   color: ${theme.color.black_70};
 `;
