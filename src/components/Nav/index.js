@@ -68,7 +68,7 @@ const Container = styled.div`
     flex-direction: column;
     width: unset;
     height: 100vh;
-    border-right: 2px solid ${theme.color.black_30};
+    border-right: 2px solid ${theme.color.black_70};
     justify-content: space-around;
     position: fixed;
     top: 0;
@@ -104,13 +104,13 @@ const Container = styled.div`
   width: 100vw;
   position: fixed;
   bottom: 0;
-  border-top: 2px solid ${theme.color.black_30};
   img {
     width: 48px;
     height: 48px;
   }
   transition: .3s;
   @media (max-width: 1024px) {
+    border-top: 2px solid ${theme.color.black_70};
     padding: 12px 0;
     // enter from
     &.animate-enter {

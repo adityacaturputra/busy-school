@@ -12,7 +12,7 @@ function TaskDetail(props) {
     onClick, show, disabled, description, deadlineDate, deadlineTime,
   } = props;
   const timeRemainingValue = new Date(`${deadlineDate}T${deadlineTime}:00`).getTime() - new Date().getTime();
-  const [timeRemaining, setTimeRemaining] = useState(timeRemainingValue - 10000);
+  const [timeRemaining, setTimeRemaining] = useState(timeRemainingValue);
   useEffect(() => {
     const timeRemainingInterval = setInterval(() => {
       setTimeRemaining((prevTime) => prevTime - 1000);

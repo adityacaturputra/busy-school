@@ -77,7 +77,7 @@ const Container = styled.div`
   transform: translateY(0);
   width: 100vw;
   background-color: #fff;
-  border-bottom: 1px solid ${theme.color.black_50};
+  border-bottom: 2px solid ${theme.color.black_70};
   path {
     fill: ${theme.color.black_70};
     height: 24px;

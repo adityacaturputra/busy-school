@@ -21,7 +21,7 @@ export default function Courses({ day, data, isCurrentDay }) {
       {
          dataSorted.map((courseData, i) => (
            <Fade duration={i * 200} key={courseData.id}>
-             <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={{ startTime: courseData['start-time'], endTime: courseData['end-time'] }} isCurrentDay={isCurrentDay} />
+             <Course title={courseData.name} place={courseData.place} teacher={courseData.teacher} time={{ startTime: courseData['start-time'], endTime: courseData['end-time'] }} isCurrentDay={isCurrentDay} last={dataSorted.length - 1 === i} />
            </Fade>
          ))
       }

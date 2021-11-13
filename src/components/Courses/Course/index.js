@@ -25,10 +25,10 @@ const Course = (props) => {
         const isCurrentCourseTime = currentTime > courseTimeStart && currentTime < courseTimeEnd;
         setCourseInfo({ isCourseTimePassed, isCurrentCourseTime });
         if (isCurrentCourseTime) {
-          const remainingTimeTest = courseTimeEnd - currentTime - 10;
-          const seconds = remainingTimeTest % 60;
-          const minutes = Math.floor((remainingTimeTest % (3600)) / 60);
-          const hours = Math.floor(remainingTimeTest / 3600);
+          const remainingTimeSeconds = courseTimeEnd - currentTime;
+          const seconds = remainingTimeSeconds % 60;
+          const minutes = Math.floor((remainingTimeSeconds % (3600)) / 60);
+          const hours = Math.floor(remainingTimeSeconds / 3600);
           setRemainingTime(() => `${hours > 0 ? `${hours}:` : ''}${minutes > 0 ? `${minutes}:` : ''}${seconds}`);
         }
       }
@@ -77,8 +77,8 @@ Course.defaultProps = {
 };
 
 const Container = styled.div`
-    padding: 12px 24px 12px 24px;
-    border-bottom: 1px solid ${({ last }) => (last ? theme.color.black_50 : theme.color.black_10)};
+    padding: 12px 24px ${({ last }) => (last ? '36' : '12')}px 24px;
+    border-bottom: 1px solid ${({ last }) => (last ? theme.color.black_30 : theme.color.black_10)};
   `;
 
 const DescriptionContainer = styled.div`
