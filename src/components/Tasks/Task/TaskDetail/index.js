@@ -90,12 +90,18 @@ const Content = styled.div`
 `;
 
 const Text = styled.p`
-    font-size: 12px;
+      @media (min-width: 350px){
+        font-size: 12px;
+      }
+      @media (max-width: 350px){
+        font-size: 11px;
+      }
     color: ${theme.color.black_70};
     margin-left: 12px;
 `;
 
 const Description = styled(Text)`
+    margin-left: 10px;
     max-width: 60vw;
     line-height: 1.5;
 `;

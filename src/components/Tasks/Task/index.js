@@ -70,7 +70,7 @@ const Container = styled.div`
         font-size: 14px;
       }
       @media (max-width: 350px){
-        font-size: 12px;
+        font-size: 11px;
       }
       margin-left: 8px;
       margin-right: auto;
