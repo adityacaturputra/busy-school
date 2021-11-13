@@ -6,10 +6,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { IconListTask, IconListTaskCross, IconListTaskCheck } from '../../../assets';
+import {
+  IconListTask, IconListTaskCross, IconListTaskCheck, IconDelete,
+} from '../../../assets';
 import theme from '../../../config/theme';
 import TaskDetail from './TaskDetail';
-import { checkTask, unCheckTask } from '../../../store/actions';
+import { checkTask, deleteTask, unCheckTask } from '../../../store/actions';
 import { Fade } from '../../Animation';
 
 export default function Task(props) {
@@ -27,6 +29,10 @@ export default function Task(props) {
     dispatch(unCheckTask(taskId));
     e.stopPropagation();
   };
+  const handleDeleteTask = (taskId) => (e) => {
+    dispatch(deleteTask(taskId));
+    e.stopPropagation();
+  };
 
   return (
     <Fade>
@@ -35,7 +41,12 @@ export default function Task(props) {
         <p>{title}</p>
         {
           disabled
-            ? <IconListTaskCross onClick={handleUncheckTask(id)} />
+            ? (
+              <>
+                <IconListTaskCross onClick={handleUncheckTask(id)} />
+                <IconDelete onClick={handleDeleteTask(id)} />
+              </>
+            )
             : <IconListTaskCheck onClick={handleCheckTask(id)} />
         }
       </Container>
@@ -53,14 +64,19 @@ const Container = styled.div`
     background-color: ${theme.color.black_10};
     }
     cursor: pointer;
+    border-bottom: 1px solid ${theme.color.black_10};
     p {
-      font-size: 14px;
+      @media (min-width: 350px){
+        font-size: 14px;
+      }
+      @media (max-width: 350px){
+        font-size: 12px;
+      }
       margin-left: 8px;
       margin-right: auto;
       font-weight: 500;
       color: ${({ disabled }) => (disabled ? theme.color.black_30 : theme.color.black_100)};
     }
-    border-bottom: 1px solid ${theme.color.black_10};
 `;
 
 Task.propTypes = {

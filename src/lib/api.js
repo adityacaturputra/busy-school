@@ -54,6 +54,18 @@ export const sendTask = async (taskForm) => {
   }
 };
 
+export const sendDeleteTask = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from('tasks')
+      .delete()
+      .eq('id', id);
+    return { task: data[0], error };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const sendCheckTask = async (id) => {
   try {
     const { data, error } = await supabase

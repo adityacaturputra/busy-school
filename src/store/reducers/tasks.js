@@ -3,7 +3,7 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-unused-vars */
 import {
-  ADD_TASK, CHECK_TASK, FETCH_TASKS,
+  ADD_TASK, CHECK_TASK, DELETE_TASK, FETCH_TASKS,
 } from '../../lib/constants';
 import { sortList, sortNewList } from '../../utils';
 
@@ -28,6 +28,10 @@ const tasksReducer = (tasks = initialState, action) => {
       return {
         list: sortNewList(tasks.list, action.payload.task),
         error: action.payload.error,
+      };
+    case DELETE_TASK:
+      return {
+        list: tasks.list.filter((task) => action.payload.task.id !== task.id),
       };
     default:
       return tasks;

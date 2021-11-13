@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
 import {
-  fetchCourses, fetchTasks, sendCheckTask, sendCourse, sendTask, sendUnCheckTask,
+  fetchCourses, fetchTasks, sendCheckTask, sendCourse, sendDeleteTask, sendTask, sendUnCheckTask,
 } from '../../lib/api';
 import {
-  FETCH_COURSES, ADD_COURSE, FETCH_TASKS, ADD_TASK, CHECK_TASK,
+  FETCH_COURSES, ADD_COURSE, FETCH_TASKS, ADD_TASK, CHECK_TASK, DELETE_TASK,
 } from '../../lib/constants';
 
 export const getCourses = () => async (dispatch) => {
@@ -41,6 +41,11 @@ export const addTasks = (taskForm) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const deleteTask = (id) => async (dispatch) => {
+  const { task, error } = await sendDeleteTask(id);
+  dispatch({ type: DELETE_TASK, payload: { task, error } });
 };
 
 export const checkTask = (id) => async (dispatch) => {
