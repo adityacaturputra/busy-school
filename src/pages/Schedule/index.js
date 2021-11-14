@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable radix */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -21,7 +21,6 @@ function Schedule() {
   const week = getWeek();
   const weekPassed = Math.floor((new Date().getTime() - new Date('2021/9/27').getTime()) / (1000 * 60 * 60 * 24 * 7)) + 1;
   const closeForm = () => {
-    console.log(editCourse.isEdit);
     setAddClick(false);
     dispatch(cancelEditCourse());
   };
