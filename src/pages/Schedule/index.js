@@ -1,25 +1,40 @@
 /* eslint-disable no-shadow */
 /* eslint-disable radix */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Nav, Courses, Header, Modal,
   Fade,
 } from '../../components';
 import { Wrapper } from '../../style';
 import { IconSchedule } from '../../assets';
-import AddCourse from './AddCourse';
+import CourseForm from './CourseForm';
 import { getDate, getDayName, getWeek } from '../../utils';
+import { cancelEditCourse } from '../../store/actions';
 
 function Schedule() {
-  const { mataKuliah: coursesData } = useSelector((state) => state.courses);
+  const { mataKuliah: coursesData, editCourse } = useSelector((state) => state.courses);
+  const dispatch = useDispatch();
   const [addClick, setAddClick] = useState(false);
   const week = getWeek();
   const weekPassed = Math.floor((new Date().getTime() - new Date('2021/9/27').getTime()) / (1000 * 60 * 60 * 24 * 7)) + 1;
-  const closeForm = () => setAddClick(false);
+  const closeForm = () => {
+    console.log(editCourse.isEdit);
+    setAddClick(false);
+    dispatch(cancelEditCourse());
+  };
   const matkulDayFilter = (day) => coursesData?.filter((course) => course.day === day);
+
+  const handleModal = () => {
+    if (addClick || editCourse.isEdit) {
+      dispatch(cancelEditCourse());
+      setAddClick(false);
+    } else {
+      setAddClick(true);
+    }
+  };
 
   return (
     <>
@@ -33,8 +48,8 @@ function Schedule() {
         ))}
       </Wrapper>
       <Nav active="schedule" />
-      <Modal show={addClick} onClick={() => setAddClick(!addClick)}>
-        <AddCourse closeForm={closeForm} />
+      <Modal show={addClick || editCourse.isEdit} onClick={handleModal}>
+        <CourseForm closeForm={closeForm} isEditForm={editCourse.isEdit} />
       </Modal>
     </>
   );

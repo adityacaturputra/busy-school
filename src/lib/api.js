@@ -32,6 +32,19 @@ export const sendCourse = async (courseForm) => {
   }
 };
 
+export const sendUpdateCourse = async (courseForm) => {
+  try {
+    const { data, error } = await supabase
+      .from('mata_kuliah')
+      .update(courseForm)
+      .eq('id', courseForm.id);
+    console.log(data);
+    return { editedCourse: data[0], error };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const fetchTasks = async () => {
   try {
     const { data, error } = await supabase.from('tasks').select('*');

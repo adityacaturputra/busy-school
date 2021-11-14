@@ -16,6 +16,7 @@ import IconAdd from './IconAdd';
 import IconListTaskCheck from './IconListTaskCheck';
 import IconListTaskCross from './IconListTaskCross';
 import IconDelete from './IconDelete';
+import IconSetting from './IconSetting';
 
 export {
   IconHome, IconProfile, IconSchedule, IconTask,
@@ -32,4 +33,5 @@ export {
   IconListTaskCheck,
   IconListTaskCross,
   IconDelete,
+  IconSetting,
 };
