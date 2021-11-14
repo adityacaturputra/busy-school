@@ -1,5 +1,6 @@
+/* eslint-disable max-len */
 import {
-  ADD_COURSE, CANCEL_EDIT_COURSE, EDIT_COURSE, FETCH_COURSES, SEND_EDIT_COURSE,
+  ADD_COURSE, CANCEL_EDIT_COURSE, DELETE_COURSE, EDIT_COURSE, FETCH_COURSES, SEND_EDIT_COURSE,
 } from '../../lib/constants';
 
 const initialState = {
@@ -55,6 +56,12 @@ const coursesReducer = (courses = initialState, action) => {
           isEdit: false,
           courseState: {},
         },
+      };
+    case DELETE_COURSE:
+      return {
+        ...courses,
+        mataKuliah: courses.mataKuliah.filter((course) => course.id !== action.payload.deletedCourse.id),
+        error: action.payload.error,
       };
     default:
       return courses;

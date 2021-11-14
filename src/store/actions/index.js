@@ -2,10 +2,10 @@
 /* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
 import {
-  fetchCourses, fetchTasks, sendCheckTask, sendCourse, sendDeleteTask, sendTask, sendUnCheckTask, sendUpdateCourse,
+  fetchCourses, fetchTasks, sendCheckTask, sendCourse, sendDeleteCourse, sendDeleteTask, sendTask, sendUnCheckTask, sendUpdateCourse,
 } from '../../lib/api';
 import {
-  FETCH_COURSES, ADD_COURSE, FETCH_TASKS, ADD_TASK, CHECK_TASK, DELETE_TASK, EDIT_COURSE, CANCEL_EDIT_COURSE, SEND_EDIT_COURSE,
+  FETCH_COURSES, ADD_COURSE, FETCH_TASKS, ADD_TASK, CHECK_TASK, DELETE_TASK, EDIT_COURSE, CANCEL_EDIT_COURSE, SEND_EDIT_COURSE, DELETE_COURSE,
 } from '../../lib/constants';
 
 export const getCourses = () => async (dispatch) => {
@@ -33,7 +33,6 @@ export const editCourse = (id) => (dispatch) => {
 export const updateCourse = (courseForm) => async (dispatch) => {
   try {
     const { editedCourse, error } = await sendUpdateCourse(courseForm);
-    console.log(editedCourse);
     dispatch({ type: SEND_EDIT_COURSE, payload: { editedCourse, error } });
   } catch (error) {
     console.log(error);
@@ -42,6 +41,15 @@ export const updateCourse = (courseForm) => async (dispatch) => {
 
 export const cancelEditCourse = () => (dispatch) => {
   dispatch({ type: CANCEL_EDIT_COURSE, payload: {} });
+};
+
+export const deleteCourse = (id) => async (dispatch) => {
+  try {
+    const { deletedCourse, error } = await sendDeleteCourse(id);
+    dispatch({ type: DELETE_COURSE, payload: { deletedCourse, error } });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getTasks = () => async (dispatch) => {

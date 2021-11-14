@@ -45,6 +45,18 @@ export const sendUpdateCourse = async (courseForm) => {
   }
 };
 
+export const sendDeleteCourse = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from('mata_kuliah')
+      .delete()
+      .eq('id', id);
+    return { deletedCourse: data[0], error };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const fetchTasks = async () => {
   try {
     const { data, error } = await supabase.from('tasks').select('*');

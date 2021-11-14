@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCourse, updateCourse } from '../../../store/actions';
+import { addCourse, deleteCourse, updateCourse } from '../../../store/actions';
+import { IconDelete } from '../../../assets';
 import { FormContainer } from '../../../style';
 import { TitleForm } from '../../../style/Form';
 import { getWeek } from '../../../utils/time';
@@ -33,6 +34,10 @@ export default function CourseForm({ closeForm, isEditForm }) {
       closeForm();
       return;
     }
+    if (type === 'delete') {
+      e.preventDefault();
+      dispatch(deleteCourse(courseForm.id));
+    }
     setCourseForm({ ...courseForm, [e.target.name]: e.target.value });
   };
 
@@ -62,6 +67,10 @@ export default function CourseForm({ closeForm, isEditForm }) {
           }
         </div>
         <button type="submit">{isEditForm ? 'Update Mata Kuliah' : 'Tambah Mata Kuliah'}</button>
+        {
+          isEditForm
+          && <IconDelete onClick={handleForm('delete')} caption="Hapus Mata Kuliah" />
+        }
       </form>
     </FormContainer>
   );
