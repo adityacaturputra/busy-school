@@ -1,20 +1,29 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-param-reassign */
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { IconCourse, IconDestination, IconTeacher } from '../../../assets';
+import { useDispatch } from 'react-redux';
+import {
+  IconCourse, IconDestination, IconSetting, IconTeacher,
+} from '../../../assets';
 import { Gap } from '../../../style';
 import theme from '../../../config/theme';
 import { convertDateToSecondsInDay } from '../../../utils';
+import { editCourse } from '../../../store/actions';
 
 const Course = (props) => {
   const {
-    title, place, teacher, time, disabled, last, isCurrentDay,
+    id, title, place, teacher, time, disabled, last, isCurrentDay,
   } = props;
   const [remainingTime, setRemainingTime] = useState('');
   const [courseInfo, setCourseInfo] = useState({ isCurrentCourseTime: false, isCourseTimePassed: false });
+  const dispatch = useDispatch();
+  const handleEditCourse = (id) => () => {
+    dispatch(editCourse(id));
+  };
   useEffect(() => {
     const remainingCourseTimeInterval = setInterval(() => {
       if (isCurrentDay) {
@@ -43,6 +52,14 @@ const Course = (props) => {
         <IconCourse disabled={courseInfo.isCourseTimePassed || disabled} />
         <Gap width="6px" />
         <Title disabled={courseInfo.isCourseTimePassed || disabled}>{title}</Title>
+        {
+          !isCurrentDay
+          && (
+            <ForceToRight>
+              <IconSetting onClick={handleEditCourse(id)} />
+            </ForceToRight>
+          )
+        }
       </TitleContainer>
       <Gap height="8px" />
       <DescriptionContainer>
@@ -50,17 +67,18 @@ const Course = (props) => {
         <SubText disabled={courseInfo.isCourseTimePassed || disabled}>{place}</SubText>
         <IconTeacher disabled={courseInfo.isCourseTimePassed || disabled} />
         <SubText disabled={courseInfo.isCourseTimePassed || disabled}>{teacher}</SubText>
-        <SubTextTime disabled={courseInfo.isCourseTimePassed || disabled}>
+        <ForceToRight disabled={courseInfo.isCourseTimePassed || disabled}>
           {courseInfo.isCurrentCourseTime
             ? remainingTime
             : `${time.startTime} - ${time.endTime}`}
-        </SubTextTime>
+        </ForceToRight>
       </DescriptionContainer>
     </Container>
   );
 };
 
 Course.propTypes = {
+  id: PropTypes.any.isRequired,
   title: PropTypes.string.isRequired,
   place: PropTypes.string.isRequired,
   teacher: PropTypes.string.isRequired,
@@ -113,7 +131,7 @@ const SubText = styled.p`
     line-height: 0;
   `;
 
-const SubTextTime = styled(SubText)`
+const ForceToRight = styled(SubText)`
     margin: 0 0 0 auto;
   `;
 
