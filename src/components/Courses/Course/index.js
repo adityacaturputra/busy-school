@@ -2,7 +2,7 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-param-reassign */
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
@@ -11,41 +11,19 @@ import {
 } from '../../../assets';
 import { Gap } from '../../../style';
 import theme from '../../../config/theme';
-import { convertDateToSecondsInDay } from '../../../utils';
 import { editCourse } from '../../../store/actions';
+import useCourseRemainingTime from '../../../hooks/useCourseRemainingTime';
 
 const Course = (props) => {
   const {
     id, title, place, teacher, time, disabled, last, isCurrentDay,
   } = props;
-  const [remainingTime, setRemainingTime] = useState('');
-  const [courseInfo, setCourseInfo] = useState({ isCurrentCourseTime: false, isCourseTimePassed: false });
+  const { remainingTime, courseInfo } = useCourseRemainingTime(isCurrentDay, time);
   const dispatch = useDispatch();
   const handleEditCourse = (id) => () => {
     dispatch(editCourse(id));
   };
-  useEffect(() => {
-    const remainingCourseTimeInterval = setInterval(() => {
-      if (isCurrentDay) {
-        const courseTimeStart = convertDateToSecondsInDay(new Date(`1970-01-01T${time.startTime}:00`));
-        const courseTimeEnd = convertDateToSecondsInDay(new Date(`1970-01-01T${time.endTime}:00`));
-        const currentTime = convertDateToSecondsInDay();
-        const isCourseTimePassed = currentTime > courseTimeEnd;
-        const isCurrentCourseTime = currentTime > courseTimeStart && currentTime < courseTimeEnd;
-        setCourseInfo({ isCourseTimePassed, isCurrentCourseTime });
-        if (isCurrentCourseTime) {
-          const remainingTimeSeconds = courseTimeEnd - currentTime;
-          const seconds = remainingTimeSeconds % 60;
-          const minutes = Math.floor((remainingTimeSeconds % (3600)) / 60);
-          const hours = Math.floor(remainingTimeSeconds / 3600);
-          setRemainingTime(() => `${hours > 0 ? `${hours}:` : ''}${minutes > 0 ? `${minutes}:` : ''}${seconds}`);
-        }
-      }
-    }, 1000);
-    return () => {
-      clearInterval(remainingCourseTimeInterval);
-    };
-  }, []);
+
   return (
     <Container last={last}>
       <TitleContainer>

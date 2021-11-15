@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import styled from 'styled-components';
@@ -6,22 +6,13 @@ import theme from '../../../../config/theme';
 import { IconListTaskClock, IconListTaskDeadline, IconListTaskDescription } from '../../../../assets';
 import { getDate } from '../../../../utils';
 import TimeRemainingConverter from './TimeRemainingCorverter';
+import useTaskRemainingTime from '../../../../hooks/useTaskRemainingTime';
 
 function TaskDetail(props) {
   const {
     onClick, show, disabled, description, deadlineDate, deadlineTime,
   } = props;
-  const timeRemainingValue = new Date(`${deadlineDate}T${deadlineTime}:00`).getTime() - new Date().getTime();
-  const [timeRemaining, setTimeRemaining] = useState(timeRemainingValue);
-  useEffect(() => {
-    const timeRemainingInterval = setInterval(() => {
-      setTimeRemaining((prevTime) => prevTime - 1000);
-    }, 1000);
-    return () => {
-      clearInterval(timeRemainingInterval);
-    };
-  }, []);
-
+  const timeRemaining = useTaskRemainingTime(deadlineDate, deadlineTime);
   return (
     <>
       <Transition in={show} timeout={200}>
@@ -84,9 +75,6 @@ const Container = styled.div`
 const Content = styled.div`
     display: flex;
     align-items: center;
-    /* &.description {
-      margin-left: -2px;
-    } */
 `;
 
 const Text = styled.p`
