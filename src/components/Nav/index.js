@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import {
-  IconHome, IconProfile, IconSchedule, IconTask,
+  IconHome, IconSchedule, IconTask,
 } from '../../assets';
 import theme from '../../config/theme';
 

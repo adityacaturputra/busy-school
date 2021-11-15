@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -37,6 +38,7 @@ export default function CourseForm({ closeForm, isEditForm }) {
     if (type === 'delete') {
       e.preventDefault();
       dispatch(deleteCourse(courseForm.id));
+      closeForm();
     }
     setCourseForm({ ...courseForm, [e.target.name]: e.target.value });
   };
@@ -44,24 +46,24 @@ export default function CourseForm({ closeForm, isEditForm }) {
   return (
     <FormContainer>
       <TitleForm text={isEditForm ? 'Edit Mata Kuliah' : 'Tambah Mata Kuliah'} />
-      <form onChange={handleForm()} onSubmit={handleForm('submit')}>
+      <form onSubmit={handleForm('submit')}>
         <label htmlFor="mata-kuliah">Nama Mata Kuliah</label>
-        <input type="text" placeholder="e.g. Matematika Informatika" id="mata-kuliah" name="name" value={courseForm.name} />
+        <input type="text" placeholder="e.g. Matematika Informatika" id="mata-kuliah" name="name" value={courseForm.name} onChange={handleForm()} />
         <label htmlFor="teacher">Dosen Pengampu</label>
-        <input type="text" placeholder="e.g. Aditya Catur S.Kom" id="teacher" name="teacher" value={courseForm.teacher} />
+        <input type="text" placeholder="e.g. Aditya Catur S.Kom" id="teacher" name="teacher" value={courseForm.teacher} onChange={handleForm()} />
         <label htmlFor="place">Kode Tempat</label>
-        <input type="text" placeholder="e.g. D003" id="place" name="place" value={courseForm.place} />
+        <input type="text" placeholder="e.g. D003" id="place" name="place" value={courseForm.place} onChange={handleForm()} />
         <label htmlFor="start-time">Waktu Mulai</label>
-        <input type="time" id="start-time" name="start-time" value={courseForm['start-time']} />
+        <input type="time" id="start-time" name="start-time" value={courseForm['start-time']} onChange={handleForm()} />
         <label htmlFor="end-time">Waktu Selesai</label>
-        <input type="time" id="end-time" name="end-time" value={courseForm['end-time']} />
+        <input type="time" id="end-time" name="end-time" value={courseForm['end-time']} onChange={handleForm()} />
         <label htmlFor="hari">Hari</label>
         <div>
           {
             week.map((dayName) => (
               <>
-                <input type="radio" name="day" id={dayName} value={dayName} defaultChecked={isEditForm && (courseState.day === dayName)} />
-                <label htmlFor={dayName} className="day" key={`${dayName} day`}>{capitalizeFirstLetter(dayName)}</label>
+                <input type="radio" name="day" id={dayName} value={dayName} defaultChecked={isEditForm && (courseState.day === dayName)} onChange={handleForm()} />
+                <label htmlFor={dayName} className="day" key={`${dayName}-day`}>{capitalizeFirstLetter(dayName)}</label>
               </>
             ))
           }
