@@ -11,6 +11,7 @@ import {
 import { getDayName } from '../../utils';
 import Loader from '../../components/Loader';
 import IsFetched from '../../components/IsFetched';
+import TextError from '../../components/TextError';
 
 function Home() {
   const { mataKuliah: coursesData, error: errorCourse, isFetched: isFetchedCourse } = useSelector((state) => state.courses);
@@ -21,11 +22,11 @@ function Home() {
     <>
       <Header Icon={<IconHome size="24px" />} title="Selamat Datang" description="30120044" />
       <Wrapper>
-        <IsFetched isFetched={isFetchedTask} isError={errorTask} Loader={<Loader />} Error={<Error>{errorTask}</Error>}>
-          <Tasks list={unCompleteTask} />
-        </IsFetched>
-        <IsFetched isFetched={isFetchedCourse} isError={errorCourse} Loader={<Loader />} Error={<Error>{errorCourse}</Error>}>
+        <IsFetched isFetched={isFetchedCourse} isError={errorCourse} Loader={<Loader />} Error={<TextError title={errorCourse} />}>
           <Courses data={matkulDayFilter(getDayName())} isCurrentDay />
+        </IsFetched>
+        <IsFetched isFetched={isFetchedTask} isError={errorTask} Loader={<Loader />} Error={<TextError title={errorTask} />}>
+          <Tasks list={unCompleteTask} />
         </IsFetched>
       </Wrapper>
       <Nav active="home" />
@@ -33,10 +34,5 @@ function Home() {
 
   );
 }
-
-const Error = styled.h2`
-  padding-left: 24px;
-  text-align: 'center';
-`;
 
 export default Home;

@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
-
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -9,31 +8,21 @@ import {
   IconHome, IconSchedule, IconTask,
 } from '../../assets';
 import theme from '../../config/theme';
+import useScrollEffect from '../../hooks/useScrollEffect';
 
 export default function Nav(props) {
   const { active } = props;
-  const [scroll, setScroll] = useState({
-    scrolling: true,
-    scrollTop: 0,
-  });
-
-  useEffect(() => {
-    const onScroll = (e) => {
-      setScroll({ ...scroll, scrollTop: e.target.documentElement.scrollTop, scrolling: e.target.documentElement.scrollTop < scroll.scrollTop });
-    };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [scroll.scrollTop]);
+  const scroll = useScrollEffect();
   return (
     <CSSTransition
-      in={scroll.scrolling}
+      in={!scroll.scrolling}
       classNames="animate"
       timeout={500}
       unmountOnExit
     >
       {
           () => (
-            <Container>
+            <Content>
               <NavItem to="/" active={active === 'home'}>
                 <IconHome size="36px" />
               </NavItem>
@@ -46,7 +35,7 @@ export default function Nav(props) {
               {/* <NavItem to="profile" active={active === 'profile'}>
                 <IconProfile size={'36px'} />
               </NavItem> */}
-            </Container>
+            </Content>
           )
           }
     </CSSTransition>
@@ -62,7 +51,7 @@ Nav.defaultProps = {
   active: 'home',
 };
 
-const Container = styled.div`
+const Content = styled.div`
   @media (min-width: 1024px) {
     padding: 18px 36px;
     flex-direction: column;

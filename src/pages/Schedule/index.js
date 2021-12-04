@@ -3,7 +3,6 @@
 /* eslint-disable radix */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Nav, Courses, Header, Modal,
@@ -16,6 +15,7 @@ import { getDate, getDayName, getWeek } from '../../utils';
 import { cancelEditCourse } from '../../store/actions';
 import IsFetched from '../../components/IsFetched';
 import Loader from '../../components/Loader';
+import TextError from '../../components/TextError';
 
 function Schedule() {
   const {
@@ -45,10 +45,10 @@ function Schedule() {
     <>
       <Header Icon={<IconSchedule size="24px" />} title={`Minggu ke - ${weekPassed}`} description={getDate()} />
       <Wrapper>
-        <IsFetched isFetched={isFetchedCourse} isError={errorCourse} Loader={<Loader />} Error={<Error>{errorCourse}</Error>}>
+        <IsFetched isFetched={isFetchedCourse} isError={errorCourse} Loader={<Loader />} Error={<TextError title={errorCourse} />}>
           {week.map((day, i) => (
             <Fade duration={i * 300} key={day}>
-              {i === 0 && <Courses data={matkulDayFilter(getDayName())} />}
+              {i === 0 && <Courses data={matkulDayFilter(getDayName())} isCurrentDay />}
               <Courses day={day} data={matkulDayFilter(day)} />
             </Fade>
           ))}
@@ -61,10 +61,5 @@ function Schedule() {
     </>
   );
 }
-
-const Error = styled.h2`
-  padding-left: 24px;
-  text-align: 'center';
-`;
 
 export default Schedule;

@@ -1,29 +1,20 @@
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import theme from '../../config/theme';
 import { Gap } from '../../style';
+import useScrollEffect from '../../hooks/useScrollEffect';
 
 function Header(props) {
-  const [scroll, setScroll] = useState({
-    scrolling: true,
-    scrollTop: 0,
-  });
+  const scroll = useScrollEffect();
 
-  useEffect(() => {
-    const onScroll = (e) => {
-      setScroll({ ...scroll, scrollTop: e.target.documentElement.scrollTop, scrolling: e.target.documentElement.scrollTop < scroll.scrollTop });
-    };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [scroll.scrollTop]);
   const { Icon, title, description } = props;
   return (
     <>
       <CSSTransition
-        in={scroll.scrolling}
+        in={!scroll.scrolling}
         classNames="animate"
         timeout={500}
         unmountOnExit

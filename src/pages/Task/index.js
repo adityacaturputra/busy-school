@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import {
   Nav, Tasks, Header, Modal,
@@ -10,6 +9,7 @@ import { Wrapper } from '../../style';
 import AddTask from './AddTask';
 import IsFetched from '../../components/IsFetched';
 import Loader from '../../components/Loader';
+import TextError from '../../components/TextError';
 
 function Task() {
   const [addClick, setAddClick] = useState(false);
@@ -20,7 +20,7 @@ function Task() {
     <div>
       <Header Icon={<IconTask size="24px" />} title={`${unCompleteTask.length} tersisa`} description={`${list.length - unCompleteTask.length} sudah diselesaikan`} />
       <Wrapper>
-        <IsFetched isFetched={isFetchedTask} isError={errorTask} Loader={<Loader />} Error={<Error>{errorTask}</Error>}>
+        <IsFetched isFetched={isFetchedTask} isError={errorTask} Loader={<Loader />} Error={<TextError title={errorTask} />}>
           <Tasks list={list} />
         </IsFetched>
       </Wrapper>
@@ -31,11 +31,6 @@ function Task() {
     </div>
   );
 }
-
-const Error = styled.h2`
-  padding-left: 24px;
-  text-align: 'center';
-`;
 
 Task.propTypes = {
 
