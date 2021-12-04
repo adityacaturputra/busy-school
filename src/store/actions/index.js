@@ -5,7 +5,7 @@ import {
   fetchCourses, fetchTasks, sendCheckTask, sendCourse, sendDeleteCourse, sendDeleteTask, sendTask, sendUnCheckTask, sendUpdateCourse,
 } from '../../lib/api';
 import {
-  FETCH_COURSES, ADD_COURSE, FETCH_TASKS, ADD_TASK, CHECK_TASK, DELETE_TASK, EDIT_COURSE, CANCEL_EDIT_COURSE, SEND_EDIT_COURSE, DELETE_COURSE,
+  FETCH_COURSES, ADD_COURSE, FETCH_TASKS, ADD_TASK, CHECK_TASK, DELETE_TASK, EDIT_COURSE, CANCEL_EDIT_COURSE, SEND_EDIT_COURSE, DELETE_COURSE, ERROR_TASK, ERROR_COURSE,
 } from '../../lib/constants';
 
 export const getCourses = () => async (dispatch) => {
@@ -13,7 +13,7 @@ export const getCourses = () => async (dispatch) => {
     const { mataKuliah, error } = await fetchCourses();
     dispatch({ type: FETCH_COURSES, payload: { mataKuliah, error } });
   } catch (error) {
-    console.log(error);
+    dispatch({ type: ERROR_COURSE, payload: 'Terjadi kesalahan pada courses, silakan refresh' });
   }
 };
 
@@ -57,7 +57,7 @@ export const getTasks = () => async (dispatch) => {
     const { list, error } = await fetchTasks();
     dispatch({ type: FETCH_TASKS, payload: { list, error } });
   } catch (error) {
-    console.log(error);
+    dispatch({ type: ERROR_TASK, payload: 'Terjadi kesalahan pada tasks, silakan refresh' });
   }
 };
 

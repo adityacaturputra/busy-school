@@ -15,7 +15,7 @@ export const fetchCourses = async () => {
       .select('*');
     return { mataKuliah, error };
   } catch (error) {
-    console.log(error);
+    console.log('test');
   }
 };
 

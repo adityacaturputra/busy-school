@@ -1,8 +1,9 @@
+/* eslint-disable max-len */
 /* eslint-disable no-shadow */
 /* eslint-disable radix */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-
+import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Nav, Courses, Header, Modal,
@@ -13,9 +14,14 @@ import { IconSchedule } from '../../assets';
 import CourseForm from './CourseForm';
 import { getDate, getDayName, getWeek } from '../../utils';
 import { cancelEditCourse } from '../../store/actions';
+import IsFetched from '../../components/IsFetched';
+import Loader from '../../components/Loader';
 
 function Schedule() {
-  const { mataKuliah: coursesData, editCourse } = useSelector((state) => state.courses);
+  const {
+    mataKuliah: coursesData, editCourse, isFetched: isFetchedCourse, error: errorCourse,
+  } = useSelector((state) => state.courses);
+
   const dispatch = useDispatch();
   const [addClick, setAddClick] = useState(false);
   const week = getWeek();
@@ -39,12 +45,14 @@ function Schedule() {
     <>
       <Header Icon={<IconSchedule size="24px" />} title={`Minggu ke - ${weekPassed}`} description={getDate()} />
       <Wrapper>
-        {week.map((day, i) => (
-          <Fade duration={i * 300} key={day}>
-            {i === 0 && <Courses data={matkulDayFilter(getDayName())} />}
-            <Courses day={day} data={matkulDayFilter(day)} />
-          </Fade>
-        ))}
+        <IsFetched isFetched={isFetchedCourse} isError={errorCourse} Loader={<Loader />} Error={<Error>{errorCourse}</Error>}>
+          {week.map((day, i) => (
+            <Fade duration={i * 300} key={day}>
+              {i === 0 && <Courses data={matkulDayFilter(getDayName())} />}
+              <Courses day={day} data={matkulDayFilter(day)} />
+            </Fade>
+          ))}
+        </IsFetched>
       </Wrapper>
       <Nav active="schedule" />
       <Modal show={addClick || editCourse.isEdit} onClick={handleModal}>
@@ -53,5 +61,10 @@ function Schedule() {
     </>
   );
 }
+
+const Error = styled.h2`
+  padding-left: 24px;
+  text-align: 'center';
+`;
 
 export default Schedule;

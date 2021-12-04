@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
 import {
-  ADD_COURSE, CANCEL_EDIT_COURSE, DELETE_COURSE, EDIT_COURSE, FETCH_COURSES, SEND_EDIT_COURSE,
+  ADD_COURSE, CANCEL_EDIT_COURSE, DELETE_COURSE, EDIT_COURSE, ERROR_COURSE, FETCH_COURSES, SEND_EDIT_COURSE,
 } from '../../lib/constants';
 
 const initialState = {
   mataKuliah: [],
-  error: false,
+  error: '',
+  isFetched: false,
   editCourse: {
     isEdit: false,
     courseState: {},
@@ -18,6 +19,7 @@ const coursesReducer = (courses = initialState, action) => {
       return {
         ...courses,
         mataKuliah: action.payload.mataKuliah,
+        isFetched: true,
       };
     case ADD_COURSE:
       return {
@@ -27,6 +29,7 @@ const coursesReducer = (courses = initialState, action) => {
           action.payload.addedCourse,
         ],
         error: action.payload.error,
+        isFetched: true,
       };
     case EDIT_COURSE:
       return {
@@ -35,6 +38,7 @@ const coursesReducer = (courses = initialState, action) => {
           isEdit: true,
           courseState: courses.mataKuliah.filter((course) => course.id === action.payload.id)[0],
         },
+        isFetched: true,
       };
     case CANCEL_EDIT_COURSE:
       return {
@@ -43,6 +47,7 @@ const coursesReducer = (courses = initialState, action) => {
           isEdit: false,
           courseState: {},
         },
+        isFetched: true,
       };
     case SEND_EDIT_COURSE:
       return {
@@ -62,6 +67,12 @@ const coursesReducer = (courses = initialState, action) => {
         ...courses,
         mataKuliah: courses.mataKuliah.filter((course) => course.id !== action.payload.deletedCourse.id),
         error: action.payload.error,
+      };
+    case ERROR_COURSE:
+      return {
+        ...courses,
+        error: action.payload,
+        isFetched: true,
       };
     default:
       return courses;
